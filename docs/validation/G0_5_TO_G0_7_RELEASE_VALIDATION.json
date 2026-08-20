@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "recorded_at": "2026-08-20T12:57:21+08:00",
+  "release": "v0.6.0",
+  "repository": {
+    "full_name": "henryljh001/open-policy-sandbox",
+    "url": "https://github.com/henryljh001/open-policy-sandbox",
+    "visibility": "public",
+    "default_branch": "main"
+  },
+  "initial_import": {
+    "commit": "edde445ebefa58138d4eb28f10427e303c0104dd",
+    "tree": "434268e45a8c63e78a35f0ea319695ba503c5180",
+    "subject": "initial import baseline"
+  },
+  "release_pipeline": {
+    "commit": "a254a06e13773d349f6dd2b41c819e0321bac1ad",
+    "tree": "89f77e0320723dc33848bde7ff80b1ba59d1bad7",
+    "subject": "build: establish public release pipeline"
+  },
+  "remote_validation": {
+    "main_sha": "a254a06e13773d349f6dd2b41c819e0321bac1ad",
+    "branches": ["main"],
+    "temporary_deploy_keys_remaining": 0
+  },
+  "ci": {
+    "run_id": 32333301198,
+    "run_attempt": 2,
+    "url": "https://github.com/henryljh001/open-policy-sandbox/actions/runs/32333301198",
+    "head_sha": "a254a06e13773d349f6dd2b41c819e0321bac1ad",
+    "status": "completed",
+    "conclusion": "success",
+    "python_jobs": {
+      "3.11": 96318888373,
+      "3.12": 96318888374,
+      "3.13": 96318888295
+    },
+    "checks_per_job": [
+      "ruff",
+      "96 unit tests",
+      "candidate isolation scan",
+      "staged isolation scan",
+      "wheel build"
+    ]
+  },
+  "release_seal": {
+    "tag": "v0.6.0",
+    "target": "the commit containing this validation record",
+    "rule": "create the annotated tag only after the target commit passes CI",
+    "tag_mutation_allowed": false
+  },
+  "capability_boundary": {
+    "usage_level": "Demo",
+    "U6": "not_passed",
+    "U7": "not_passed",
+    "U8": "not_passed",
+    "real_data_adapter_count": 0
+  }
+}
