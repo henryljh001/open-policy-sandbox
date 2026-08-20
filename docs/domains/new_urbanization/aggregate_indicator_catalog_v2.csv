@@ -1,0 +1,9 @@
+indicator_id,model_outcome,contract_unit,reference_semantics,required_caliber,real_data_eligibility,tolerance_status
+total_population,final_total_population,person,reference-year stock,must declare resident or registered population,conditional,requires preregistration
+urbanization_rate,final_urbanization_rate,percent,reference-year level,must declare resident or registered denominator,conditional,requires preregistration
+employment_rate,final_employment_rate,percent,reference-year level,must declare working-age denominator and employment definition,conditional,requires preregistration
+debt_to_revenue,final_debt_to_revenue,percent,reference-year level,must declare debt and revenue coverage,conditional,requires preregistration
+education_capacity_per_1000,final_education_capacity_per_1000,capacity_per_1000_persons,reference-year capacity,must declare capacity measure and population denominator,conditional,requires preregistration
+health_capacity_per_1000,final_health_capacity_per_1000,capacity_per_1000_persons,reference-year capacity,must declare capacity measure and population denominator,conditional,requires preregistration
+housing_occupancy_rate,final_housing_occupancy_rate,percent,reference-year level,must declare housing stock and occupancy definition,conditional,requires preregistration
+used_construction_land,final_used_construction_land,synthetic_area_unit,reference-year stock,synthetic unit has no real-data mapping,blocked,pending unit mapping

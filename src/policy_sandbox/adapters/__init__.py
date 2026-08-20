@@ -4,6 +4,10 @@ from policy_sandbox.adapters.base import (
     AggregateDataAdapter,
     AggregateDataAdapterDescriptor,
 )
+from policy_sandbox.adapters.contracts import (
+    canonical_digest,
+    migrate_aggregate_dataset_v1_to_v2,
+)
 from policy_sandbox.adapters.registry import (
     AGGREGATE_ADAPTER_REGISTRY,
     AggregateDataAdapterFactory,
@@ -19,5 +23,7 @@ __all__ = [
     "AggregateDataAdapterDescriptor",
     "AggregateDataAdapterFactory",
     "available_aggregate_adapters",
+    "canonical_digest",
+    "migrate_aggregate_dataset_v1_to_v2",
     "register_aggregate_adapter",
 ]
