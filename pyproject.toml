@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "open-policy-sandbox"
-version = "0.6.0"
+version = "0.7.0"
 description = "Auditable and reproducible policy scenario sandbox"
 readme = "README.md"
 requires-python = ">=3.11"

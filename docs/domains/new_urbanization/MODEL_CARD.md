@@ -2,7 +2,7 @@
 
 ## 基本信息
 
-- 应用版本：`0.6.0`；
+- 应用版本：`0.7.0`；
 - 引擎插件：`new_urbanization_microsim`，算法版本 `0.4.0`；
 - 比较接口：`1.0.0`；
 - 汇总适配器：`new_urbanization_synthetic_aggregate_v1`，版本 `0.1.0`；

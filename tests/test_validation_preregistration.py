@@ -137,7 +137,7 @@ class ValidationPreregistrationTests(unittest.TestCase):
         }
         document["model_freeze"] = {
             "repository_commit": "a" * 40,
-            "software_version": "0.6.0",
+            "software_version": "0.7.0",
             "engine_name": "new_urbanization_microsim",
             "engine_version": "0.1.0",
             "config_digest": "6" * 64,
