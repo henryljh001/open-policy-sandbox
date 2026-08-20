@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "registration_id": "template-new-urbanization-u7",
+  "registration_version": "0.0.0",
+  "registration_status": "template_only",
+  "registration_stage": "u7_holdout",
+  "registered_at": null,
+  "registration_digest": null,
+  "domain": "new_urbanization",
+  "purpose": "pre_results_registration_only",
+  "contains_results": false,
+  "prerequisites": {
+    "I5b_evidence_digest": null,
+    "U6_registration_digest": null,
+    "U6_evidence_digest": null
+  },
+  "scope": {
+    "geographic_level": null,
+    "calibration_window": null,
+    "holdout_kind": null,
+    "indicator_ids": []
+  },
+  "data_freeze": {
+    "calibration_dataset_digest": null,
+    "holdout_dataset_digest": null,
+    "data_partition_digest": null,
+    "authorization_evidence_digest": null,
+    "quality_report_digest": null
+  },
+  "model_freeze": {
+    "repository_commit": null,
+    "software_version": null,
+    "engine_name": null,
+    "engine_version": null,
+    "config_digest": null,
+    "parameter_bounds_digest": null,
+    "implementation_freeze_digest": null,
+    "calibrated_parameters_digest": null,
+    "validated_model_freeze_digest": null
+  },
+  "u6_plan": {
+    "acceptance_rule": "all_registered_moments_within_tolerance",
+    "moments": [],
+    "parameter_bounds": [],
+    "sensitivity_checks": [],
+    "failure_policy": "retain_all_attempts_and_report",
+    "maximum_calibration_attempts": null
+  },
+  "u7_plan": {
+    "acceptance_rule": "all_primary_metrics_meet_thresholds",
+    "primary_metrics": [],
+    "externality_boundary": null,
+    "independent_validator_role": null,
+    "one_time_access": {
+      "maximum_executions": 1,
+      "consumed": false,
+      "consumed_at": null,
+      "attempt_id": null,
+      "result_digest": null
+    }
+  },
+  "amendment_policy": {
+    "before_result_access": "new_version_and_digest_required",
+    "after_result_access": "original_holdout_evidence_invalidated",
+    "change_log": []
+  },
+  "result_access": {
+    "calibration_results_viewed": false,
+    "holdout_results_viewed": false
+  },
+  "capability_effect": {
+    "automatic_promotion": false,
+    "I5b": "unchanged",
+    "U6": "unchanged",
+    "U7": "unchanged",
+    "U8": "unchanged",
+    "usage_level": "unchanged"
+  },
+  "synthetic": true
+}
