@@ -75,7 +75,7 @@ class DecisionProductTests(unittest.TestCase):
 
     def test_audit_bundle_records_versions_digests_and_unpassed_gates(self) -> None:
         audit = build_audit_bundle(self.comparison)
-        self.assertEqual(audit["component_versions"]["open_policy_sandbox"], "0.6.0")
+        self.assertEqual(audit["component_versions"]["open_policy_sandbox"], "0.7.0")
         self.assertEqual(
             audit["component_versions"]["engine_plugin"]["name"],
             "new_urbanization_microsim",

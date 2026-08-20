@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "validation_id": "P4_V070_RELEASE_CANDIDATE_2026-08-20",
+  "recorded_on": "2026-08-20",
+  "release": "v0.7.0",
+  "baseline_main_commit": "f8239649aff467181e92c4c3f6c6e2bbc295f5c6",
+  "branch": "release/v0.7.0",
+  "release_target": "the commit containing this validation record",
+  "scope": [
+    "P1 aggregate calibration contract v2 and synthetic migration",
+    "P2 deterministic semantic data-quality gates",
+    "P3 two-stage U6 and U7 preregistration governance",
+    "v0.7.0 version and public-boundary synchronization"
+  ],
+  "checks": [
+    {
+      "gate": "version_surface_contract",
+      "status": "pass",
+      "evidence": "pyproject, package, README, current state and changelog resolve to 0.7.0"
+    },
+    {
+      "gate": "full_unittest",
+      "status": "pass",
+      "evidence": "151 tests passed on Python 3.12"
+    },
+    {
+      "gate": "schema_and_example_inventory",
+      "status": "pass",
+      "evidence": {
+        "schemas": 20,
+        "synthetic_examples": 8
+      }
+    },
+    {
+      "gate": "candidate_isolation_scan",
+      "status": "pass",
+      "evidence": {
+        "candidate_manifest_count": 183,
+        "candidate_manifest_sha256": "33ac9e146b333cd963f68b8b031f2207429bba38744b641b3bac1deed2a462b8",
+        "violations": 0
+      }
+    },
+    {
+      "gate": "wheel_candidate",
+      "status": "pass",
+      "evidence": {
+        "name": "open_policy_sandbox-0.7.0-py3-none-any.whl",
+        "archive_entries": 64,
+        "external_working_directory_smoke": "pass",
+        "tested_public_apis": [
+          "package version",
+          "domain discovery",
+          "adapter conformance",
+          "validation registration digest"
+        ],
+        "note": "candidate wheel was deleted; the final release artifact is rebuilt from the tagged commit"
+      }
+    },
+    {
+      "gate": "git_diff_check",
+      "status": "pass",
+      "evidence": "no whitespace errors"
+    },
+    {
+      "gate": "remote_release_ci",
+      "status": "required_before_tag",
+      "evidence": "Python 3.11, 3.12 and 3.13 must pass Ruff, tests, dual isolation and wheel build on the release target"
+    }
+  ],
+  "release_seal": {
+    "tag": "v0.7.0",
+    "kind": "annotated",
+    "create_only_after_target_main_ci": true,
+    "tag_mutation_allowed": false,
+    "github_release_required": true,
+    "final_wheel_sha256_required": true,
+    "local_binding_record_required": true
+  },
+  "prior_release_immutability": {
+    "tag": "v0.6.0",
+    "tag_object": "cc16b5da9da225cdb63eebd66ef3a49db522c436",
+    "target_commit": "c8fe9bbe532f55830bca42680a35e6daacbe64d6",
+    "must_remain_unchanged": true
+  },
+  "public_boundary": {
+    "real_data_readers": 0,
+    "public_templates_synthetic_only": true,
+    "contains_real_data": false,
+    "contains_real_results": false,
+    "contains_human_signoff": false
+  },
+  "capability_effect": {
+    "I5a": "unchanged_completed",
+    "I5b": "not_assessed_requires_authorization",
+    "U6": "not_passed",
+    "U7": "not_passed",
+    "U8": "not_signed",
+    "usage_level": "Demo"
+  },
+  "stop_gate": {
+    "after_release": "I5b authorization boundary",
+    "forbidden_without_separate_authorization": [
+      "real data reader implementation",
+      "real preregistration evidence",
+      "U6 calibration execution",
+      "U7 holdout execution",
+      "U8 human signoff"
+    ]
+  },
+  "next": "commit and stage the release candidate, pass pull-request and main CI, then create the immutable tag, wheel asset, GitHub Release and local binding record"
+}
