@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/policy-sandbox/schemas/transformation_ledger.schema.json",
+  "title": "AggregateTransformationLedger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "ledger_id", "dataset_id", "steps", "synthetic"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "ledger_id": {"type": "string", "minLength": 1},
+    "dataset_id": {"type": "string", "minLength": 1},
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "step_id",
+          "operation",
+          "input_refs",
+          "output_fields",
+          "parameters",
+          "implementation",
+          "implementation_version",
+          "synthetic"
+        ],
+        "properties": {
+          "step_id": {"type": "string", "minLength": 1},
+          "operation": {
+            "type": "string",
+            "enum": [
+              "identity",
+              "rename",
+              "filter",
+              "aggregate",
+              "unit_convert",
+              "boundary_crosswalk",
+              "revision_select",
+              "derive"
+            ]
+          },
+          "input_refs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "output_fields": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "parameters": {"type": "object"},
+          "implementation": {"type": "string", "minLength": 1},
+          "implementation_version": {"type": "string", "minLength": 1},
+          "synthetic": {"type": "boolean"}
+        }
+      }
+    },
+    "synthetic": {"type": "boolean"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"synthetic": {"const": true}},
+        "required": ["synthetic"]
+      },
+      "then": {
+        "properties": {"steps": {"items": {"properties": {"synthetic": {"const": true}}}}}
+      },
+      "else": {
+        "properties": {"steps": {"items": {"properties": {"synthetic": {"const": false}}}}}
+      }
+    }
+  ]
+}

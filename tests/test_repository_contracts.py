@@ -14,7 +14,7 @@ class RepositoryContractTests(unittest.TestCase):
 
     def test_all_schemas_are_json_objects(self) -> None:
         schema_paths = sorted((self.root / "schemas").rglob("*.schema.json"))
-        self.assertEqual(len(schema_paths), 15)
+        self.assertEqual(len(schema_paths), 18)
         for path in schema_paths:
             value = json.loads(path.read_text(encoding="utf-8"))
             self.assertEqual(value["$schema"], "https://json-schema.org/draft/2020-12/schema")
@@ -22,7 +22,7 @@ class RepositoryContractTests(unittest.TestCase):
 
     def test_examples_are_explicitly_synthetic(self) -> None:
         example_paths = sorted((self.root / "examples").rglob("*.json"))
-        self.assertEqual(len(example_paths), 7)
+        self.assertEqual(len(example_paths), 8)
         for path in example_paths:
             value = json.loads(path.read_text(encoding="utf-8"))
             self.assertTrue(value["synthetic"], path)

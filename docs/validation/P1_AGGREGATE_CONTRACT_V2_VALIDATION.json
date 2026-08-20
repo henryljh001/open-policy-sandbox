@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "validation_id": "P1_AGGREGATE_CONTRACT_V2_2026-08-20",
+  "generated_on": "2026-08-20",
+  "baseline_commit": "15f62ab4d7654aa84b9c872974b44ec30906d71c",
+  "branch": "feat/aggregate-contract-v2",
+  "scope": [
+    "aggregate calibration dataset v2 schema",
+    "source manifest and transformation ledger schemas",
+    "deterministic synthetic v1-to-v2 migration",
+    "new urbanization eight-indicator admission catalog"
+  ],
+  "checks": [
+    {
+      "gate": "targeted_contract_tests",
+      "status": "pass",
+      "evidence": "18 tests passed"
+    },
+    {
+      "gate": "full_unittest",
+      "status": "pass",
+      "evidence": "114 tests passed on Python 3.12"
+    },
+    {
+      "gate": "candidate_isolation_scan",
+      "status": "pass",
+      "evidence": {
+        "candidate_manifest_count": 168,
+        "candidate_manifest_sha256": "5399621b15e08ad1e91d86b6788d2641603f67ee5b26510c35f554ba3d636dc9",
+        "violations": 0
+      }
+    },
+    {
+      "gate": "security_diff_scan",
+      "status": "pass_with_follow_up",
+      "evidence": {
+        "scan_id": "91c09eaa-bcc2-4786-8d0b-ceec47d976dd",
+        "snapshot_digest": "codex-security-snapshot/v1:sha256:a49fb7b50b5bf939a58915d9923acb9a61156bc96f4c82dcfbfae2f98c8a4deb",
+        "reportable_findings": 0,
+        "deferred_follow_ups": 2
+      }
+    },
+    {
+      "gate": "git_diff_check",
+      "status": "pass",
+      "evidence": "no whitespace errors"
+    }
+  ],
+  "follow_ups": [
+    {
+      "id": "P1-SEC-01",
+      "status": "closed_in_P1",
+      "summary": "public_aggregate now requires allowed public outputs and redistribution"
+    },
+    {
+      "id": "P2-SEM-01",
+      "status": "planned",
+      "summary": "semantic validator must bind dataset IDs, source IDs and transformation step IDs"
+    }
+  ],
+  "capability_effect": {
+    "I5a": "unchanged_completed",
+    "I5b": "not_started_requires_authorization",
+    "U6": "not_passed",
+    "U7": "not_passed",
+    "U8": "not_signed",
+    "usage_level": "Demo"
+  }
+}
