@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/policy-sandbox/schemas/aggregate_data_quality_report.schema.json",
+  "title": "AggregateDataQualityReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_id",
+    "validator",
+    "dataset",
+    "summary",
+    "checks",
+    "real_data_readiness",
+    "usage_level",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "report_id": {
+      "type": "string",
+      "pattern": "^quality-(?:[a-f0-9]{16}|unavailable)$"
+    },
+    "validator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"const": "aggregate_dataset_v2_semantic"},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_id",
+        "dataset_digest",
+        "input_schema_version",
+        "publication_class",
+        "evaluation_date",
+        "synthetic"
+      ],
+      "properties": {
+        "dataset_id": {"type": "string", "minLength": 1},
+        "dataset_digest": {
+          "type": ["string", "null"],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "input_schema_version": {"type": "string", "minLength": 1},
+        "publication_class": {"type": "string", "minLength": 1},
+        "evaluation_date": {"type": "string", "format": "date"},
+        "synthetic": {"type": "boolean"}
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "check_count",
+        "error_count",
+        "warning_count",
+        "record_count",
+        "indicator_count",
+        "reference_year_count",
+        "source_count",
+        "transformation_step_count"
+      ],
+      "properties": {
+        "status": {"enum": ["pass", "pass_with_warnings", "fail"]},
+        "check_count": {"type": "integer", "minimum": 1},
+        "error_count": {"type": "integer", "minimum": 0},
+        "warning_count": {"type": "integer", "minimum": 0},
+        "record_count": {"type": "integer", "minimum": 0},
+        "indicator_count": {"type": "integer", "minimum": 0},
+        "reference_year_count": {"type": "integer", "minimum": 0},
+        "source_count": {"type": "integer", "minimum": 0},
+        "transformation_step_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["check_id", "status", "issues"],
+        "properties": {
+          "check_id": {"type": "string", "minLength": 1},
+          "status": {"enum": ["pass", "warning", "fail"]},
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["code", "severity", "path", "message"],
+              "properties": {
+                "code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+                "severity": {"enum": ["warning", "error"]},
+                "path": {"type": "string", "minLength": 1},
+                "message": {"type": "string", "minLength": 1}
+              }
+            }
+          }
+        }
+      }
+    },
+    "real_data_readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "blocked_indicators",
+        "conditional_indicators",
+        "I5b_status",
+        "U6_status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "not_assessed_synthetic",
+            "blocked",
+            "requires_human_review"
+          ]
+        },
+        "blocked_indicators": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "conditional_indicators": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "I5b_status": {"const": "not_assessed"},
+        "U6_status": {"const": "not_passed"}
+      }
+    },
+    "usage_level": {"const": "Demo"},
+    "synthetic": {"type": "boolean"}
+  }
+}

@@ -35,6 +35,38 @@ v2 是数据交换契约，不是公开真实数据读取器。公开仓库当�
 
 真实数据不得伪装成 v1 合成 fixture 再迁移。真实适配必须直接生成 v2，并另行通过授权、质量、披露和 U6/U7 闸门。
 
+## v2 校验顺序
+
+v2 输入采用不可颠倒的三层入口：
+
+1. 先按 `aggregate_calibration_dataset.v2.schema.json` 校验字段、类型和封闭结构；
+2. 再调用 `validate_aggregate_dataset_v2_semantics(..., evaluation_date=...)` 校验跨对象语义；
+3. 最后才允许领域适配器把已通过的对象转换为校准目标。
+
+语义校验器不读取文件、不访问网络、不搜索相邻目录，也不验证来源文件内容。它检查：
+
+- 根数据集、来源清单和转换台账的 `dataset_id` 一致；
+- `source_id`、`step_id`、`record_id` 及指标—年份组合唯一；
+- 记录引用的来源和转换步骤存在，转换输入只指向来源或更早步骤；
+- 数据卡覆盖年份和指标与记录完全一致；
+- 八指标单位、有限数值、百分比和非负值域；
+- 合成/真实状态、观测状态、授权期限和公开发布许可一致；
+- 当前真实数据资格为 blocked 的指标不得进入真实校准。
+
+`evaluation_date` 必须由调用方显式传入，避免授权期限检查依赖机器当前时间。失败时 `AggregateDataQualityError.report` 保留全部检查结果，不做静默修复。
+
+## 数据质量报告
+
+`build_aggregate_data_quality_report` 生成符合 `aggregate_data_quality_report.schema.json` 的确定性报告。报告只裁定合同和质量检查，不裁定经验有效性：
+
+- 合成报告固定 `real_data_readiness.status=not_assessed_synthetic`；
+- 真实报告即使无机器错误，也最多为 `requires_human_review`；
+- 所有报告固定 `I5b_status=not_assessed`、`U6_status=not_passed` 和 `usage_level=Demo`。
+
+`build_adapter_conformance_report` 只检查已注册适配器的类、名称、语义版本、领域、接受的 Schema 版本和真实数据能力声明，不实例化或探测私有读取器。
+
+包含真实 `dataset_id`、摘要或质量问题的报告仍属于私有运行产物，不得直接提交公开仓库。公开披露只能使用经授权、字段最小化且通过独立披露审查的摘要；机器质量通过本身不构成披露许可。
+
 ## 数据卡必填项
 
 - 数据集标识、标题、发布者、来源类型、许可和授权状态；
