@@ -16,6 +16,7 @@
 6. 首个领域：`docs/domains/new_urbanization/README.md`
 7. 路径边界：`docs/PATHS_AND_BOUNDARIES.md`
 8. 开源许可：`LICENSE` 与 `NOTICE`
+9. 能力状态与证据责任：`docs/CAPABILITY_EVIDENCE_MATRIX.md`
 
 ## 强制规则
 
