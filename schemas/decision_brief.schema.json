@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/policy-sandbox/schemas/decision_brief.schema.json",
+  "title": "SyntheticDecisionBrief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "brief_id",
+    "comparison_id",
+    "title",
+    "decision_posture",
+    "headline",
+    "key_findings",
+    "scenario_matrix",
+    "distributional_findings",
+    "resource_risk_ledger",
+    "worst_case",
+    "non_dominated_scenario_ids",
+    "next_actions",
+    "boundaries",
+    "warnings",
+    "input_digest",
+    "not_a_recommendation",
+    "reproducible",
+    "usage_level",
+    "synthetic",
+    "brief_digest"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "brief_id": {"type": "string", "minLength": 1},
+    "comparison_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "decision_posture": {
+      "type": "string",
+      "enum": ["tradeoff_review", "single_non_dominated_option"]
+    },
+    "headline": {"type": "string", "minLength": 1},
+    "key_findings": {"type": "array", "minItems": 3, "items": {"type": "object"}},
+    "scenario_matrix": {"type": "array", "minItems": 2, "items": {"type": "object"}},
+    "distributional_findings": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "object"}
+    },
+    "resource_risk_ledger": {"type": "object"},
+    "worst_case": {"type": "object"},
+    "non_dominated_scenario_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "next_actions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "boundaries": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "warnings": {"type": "array", "items": {"type": "object"}},
+    "input_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "not_a_recommendation": {"const": true},
+    "reproducible": {"const": true},
+    "usage_level": {"const": "Demo"},
+    "synthetic": {"const": true},
+    "brief_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+  }
+}

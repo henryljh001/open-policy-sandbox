@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "synthetic-metropolitan-adjacent-baseline",
+  "name": "都市圈邻近型县城五年无政策基线",
+  "version": "1.0.0",
+  "description": "用于检验人口、就业、住房、公共服务、财政和土地闭合关系的纯合成情景。",
+  "domain_config": {
+    "schema_version": "1.0.0",
+    "domain": "new_urbanization",
+    "focus_module": "citizenization",
+    "spatial_scale": "county",
+    "time_step": "annual",
+    "horizon_years": 5,
+    "county_type": "metropolitan_adjacent",
+    "enabled_modules": [
+      "population",
+      "labor",
+      "housing",
+      "public_service",
+      "fiscal",
+      "land"
+    ],
+    "random_seed": 20260819,
+    "synthetic": true
+  },
+  "archetype": "metropolitan_adjacent",
+  "start_year": 2025,
+  "population_scale": 1.0,
+  "baseline_rates": {
+    "birth_rate": 0.007,
+    "death_rate": 0.0065,
+    "net_migration_rate": 0.008,
+    "urbanization_change": 0.009,
+    "hukou_conversion_rate": 0.1,
+    "working_age_share": 0.64,
+    "employment_rate": 0.76,
+    "job_growth_rate": 0.018,
+    "housing_growth_rate": 0.016,
+    "affordable_share_of_new_housing": 0.15,
+    "education_growth_rate": 0.012,
+    "health_growth_rate": 0.015,
+    "fiscal_revenue_growth_rate": 0.03,
+    "transfer_growth_rate": 0.015,
+    "operating_expenditure_growth_rate": 0.025,
+    "capital_expenditure_share": 0.18,
+    "construction_land_growth_rate": 0.006,
+    "stock_land_reuse_rate": 0.05
+  },
+  "engine": {
+    "name": "new_urbanization_baseline",
+    "config": {
+      "strict_invariants": true
+    }
+  },
+  "assumptions": [
+    "所有状态和参数均为合成值，不对应真实县域。",
+    "本情景只描述条件化无政策基线，不估计政策干预效果。",
+    "年度事件顺序固定，固定输入产生固定输出。"
+  ],
+  "random_seed": 20260819,
+  "synthetic": true
+}

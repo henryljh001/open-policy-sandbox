@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "synthetic-metropolitan-county-2030-v1",
+  "data_card": {
+    "schema_version": "1.0.0",
+    "title": "Synthetic metropolitan-adjacent county calibration fixture",
+    "publisher": "Open Policy Sandbox test fixtures",
+    "source_kind": "synthetic_fixture",
+    "authorization": "synthetic_fixture",
+    "license": "CC0-1.0",
+    "geography": {
+      "level": "synthetic_county",
+      "region_id": "SYN-METRO-001"
+    },
+    "coverage": {
+      "reference_year": 2030,
+      "indicator_ids": [
+        "total_population",
+        "urbanization_rate",
+        "employment_rate",
+        "debt_to_revenue",
+        "education_capacity_per_1000",
+        "health_capacity_per_1000",
+        "housing_occupancy_rate",
+        "used_construction_land"
+      ]
+    },
+    "transformations": [
+      "Rounded deterministic S0 aggregate outcomes for integration testing"
+    ],
+    "limitations": [
+      "Not observed data and not evidence of empirical validity",
+      "Values are coupled to the synthetic S0 integration fixture"
+    ],
+    "synthetic": true
+  },
+  "records": [
+    {
+      "record_id": "SYN-2030-POP",
+      "indicator_id": "total_population",
+      "value": 509000.0,
+      "unit": "person",
+      "reference_year": 2030,
+      "status": "synthetic_observation",
+      "synthetic": true
+    },
+    {
+      "record_id": "SYN-2030-URB",
+      "indicator_id": "urbanization_rate",
+      "value": 63.5,
+      "unit": "percent",
+      "reference_year": 2030,
+      "status": "synthetic_observation",
+      "synthetic": true
+    },
+    {
+      "record_id": "SYN-2030-EMP",
+      "indicator_id": "employment_rate",
+      "value": 72.0,
+      "unit": "percent",
+      "reference_year": 2030,
+      "status": "synthetic_observation",
+      "synthetic": true
+    },
+    {
+      "record_id": "SYN-2030-DEBT",
+      "indicator_id": "debt_to_revenue",
+      "value": 0.0,
+      "unit": "percent",
+      "reference_year": 2030,
+      "status": "synthetic_observation",
+      "synthetic": true
+    },
+    {
+      "record_id": "SYN-2030-EDU",
+      "indicator_id": "education_capacity_per_1000",
+      "value": 163.6,
+      "unit": "capacity_per_1000_persons",
+      "reference_year": 2030,
+      "status": "synthetic_observation",
+      "synthetic": true
+    },
+    {
+      "record_id": "SYN-2030-HEALTH",
+      "indicator_id": "health_capacity_per_1000",
+      "value": 6.2,
+      "unit": "capacity_per_1000_persons",
+      "reference_year": 2030,
+      "status": "synthetic_observation",
+      "synthetic": true
+    },
+    {
+      "record_id": "SYN-2030-HOUSE",
+      "indicator_id": "housing_occupancy_rate",
+      "value": 83.6,
+      "unit": "percent",
+      "reference_year": 2030,
+      "status": "synthetic_observation",
+      "synthetic": true
+    },
+    {
+      "record_id": "SYN-2030-LAND",
+      "indicator_id": "used_construction_land",
+      "value": 123.6,
+      "unit": "synthetic_area_unit",
+      "reference_year": 2030,
+      "status": "synthetic_observation",
+      "synthetic": true
+    }
+  ],
+  "synthetic": true
+}

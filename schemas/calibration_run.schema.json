@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/policy-sandbox/schemas/calibration_run.schema.json",
+  "title": "SyntheticCalibrationAssessmentRun",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "calibration_id",
+    "status",
+    "input_digest",
+    "scenario_id",
+    "scenario_input_digest",
+    "experiment_id",
+    "experiment_input_digest",
+    "adapter",
+    "dataset_id",
+    "dataset_input_digest",
+    "data_card_digest",
+    "repetitions",
+    "base_seed",
+    "calibration_targets",
+    "target_provenance",
+    "assessment",
+    "warnings",
+    "U6_status",
+    "reproducible",
+    "usage_level",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "calibration_id": {"type": "string", "minLength": 1},
+    "status": {
+      "type": "string",
+      "enum": ["synthetic_fixture_passed", "synthetic_fixture_failed"]
+    },
+    "input_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "scenario_id": {"type": "string", "minLength": 1},
+    "scenario_input_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "experiment_input_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "adapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "domain", "accepts_real_data"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "domain": {"const": "new_urbanization"},
+        "accepts_real_data": {"const": false}
+      }
+    },
+    "dataset_id": {"type": "string", "minLength": 1},
+    "dataset_input_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "data_card_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "repetitions": {"type": "integer", "minimum": 2},
+    "base_seed": {"type": "integer", "minimum": 0},
+    "calibration_targets": {"type": "object", "minProperties": 1},
+    "target_provenance": {"type": "object", "minProperties": 1},
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["all_passed", "passed", "total", "pass_rate_pct", "moments"],
+      "properties": {
+        "all_passed": {"type": "boolean"},
+        "passed": {"type": "integer", "minimum": 0},
+        "total": {"type": "integer", "minimum": 1},
+        "pass_rate_pct": {"type": "number", "minimum": 0, "maximum": 100},
+        "moments": {"type": "object", "minProperties": 1}
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "object"}},
+    "U6_status": {"const": "not_passed"},
+    "reproducible": {"const": true},
+    "usage_level": {"const": "Demo"},
+    "synthetic": {"const": true}
+  }
+}

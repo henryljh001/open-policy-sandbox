@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "comparison_id": "synthetic-citizenization-options-v1",
+  "name": "Synthetic citizenization policy options",
+  "comparison_mode": "policy",
+  "baseline_key": "baseline",
+  "context": {
+    "archetype": "metropolitan_adjacent",
+    "start_year": 2025,
+    "sample_size": 1000,
+    "repetitions": 20,
+    "base_seed": 20260819,
+    "horizon_years": 5
+  },
+  "scenario_specs": [
+    {
+      "key": "baseline",
+      "scenario_code": "S0",
+      "title": "No additional policy package",
+      "pressures": []
+    },
+    {
+      "key": "employment-service",
+      "scenario_code": "S6",
+      "title": "Employment and public-service package",
+      "pressures": []
+    },
+    {
+      "key": "housing-land",
+      "scenario_code": "S7",
+      "title": "Housing and land package",
+      "pressures": []
+    }
+  ],
+  "synthetic": true
+}

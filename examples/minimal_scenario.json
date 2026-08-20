@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "synthetic-city-baseline-plus",
+  "name": "合成城市公共服务增强情景",
+  "version": "1.0.0",
+  "description": "用于验证插件、契约和可复现链的纯合成情景。",
+  "commitment_ids": ["synthetic-commitment-001"],
+  "baseline": {
+    "service_coverage": 62.0,
+    "fiscal_cost": 100.0
+  },
+  "interventions": [
+    {
+      "intervention_id": "facility-expansion-01",
+      "plugin": "additive_effect",
+      "target_group": "all",
+      "start_period": 1,
+      "end_period": 5,
+      "parameters": {
+        "service_coverage": 6.5,
+        "fiscal_cost": 18.0
+      }
+    }
+  ],
+  "engine": {
+    "name": "deterministic_baseline",
+    "config": {
+      "effect_parameter": "parameters"
+    }
+  },
+  "assumptions": [
+    "干预效应按加法合成，仅用于验证软件链路。",
+    "不代表任何真实城市或政策效果。"
+  ],
+  "random_seed": 20260819,
+  "synthetic": true
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "I4",
+  "application_version": "0.5.0",
+  "validation_date": "2026-08-19",
+  "status": "software_vertical_passed",
+  "usage_level": "Demo",
+  "synthetic": true,
+  "checks": [
+    {
+      "check": "unit_tests",
+      "result": "pass",
+      "evidence": "75 tests passed"
+    },
+    {
+      "check": "repository_isolation",
+      "result": "pass",
+      "evidence": "0 violations"
+    },
+    {
+      "check": "python_line_length_100",
+      "result": "pass",
+      "evidence": "0 violations"
+    },
+    {
+      "check": "json_parse",
+      "result": "pass",
+      "evidence": "29 repository JSON files parse after this record is included"
+    },
+    {
+      "check": "schemas",
+      "result": "pass",
+      "evidence": "13 schemas; generated comparison, decision brief and audit bundle validate"
+    },
+    {
+      "check": "synthetic_examples",
+      "result": "pass",
+      "evidence": "6 examples declare synthetic=true"
+    },
+    {
+      "check": "registered_components",
+      "result": "pass",
+      "evidence": "1 domain, 4 engines, 7 interventions and 5 pressures"
+    },
+    {
+      "check": "comparison_reproducibility",
+      "result": "pass",
+      "evidence": "common base seed produces byte-equivalent comparison objects"
+    },
+    {
+      "check": "comparison_context_gate",
+      "result": "pass",
+      "evidence": "policy mode rejects changed pressure packages; stress mode permits pressure-only changes"
+    },
+    {
+      "check": "decision_artifacts",
+      "result": "pass",
+      "evidence": "comparison JSON, brief JSON, brief Markdown and audit bundle generated"
+    },
+    {
+      "check": "no_hidden_composite_score",
+      "result": "pass",
+      "evidence": "unweighted Pareto front is emitted and overall_score is absent"
+    },
+    {
+      "check": "wheel_build",
+      "result": "pass",
+      "evidence": "open_policy_sandbox-0.5.0-py3-none-any.whl built; sha256 32f45a57251ce20403660ee4d5ec4ffa65f8ee25839568d06b5890405583bbfd"
+    },
+    {
+      "check": "external_working_directory",
+      "result": "pass",
+      "evidence": "installed wheel loaded packaged defaults and generated a two-scenario decision package"
+    },
+    {
+      "check": "ruff",
+      "result": "skipped",
+      "evidence": "ruff is not installed in the local validation environment"
+    },
+    {
+      "check": "mypy",
+      "result": "skipped",
+      "evidence": "mypy is not installed in the local validation environment"
+    },
+    {
+      "check": "U6_external_calibration",
+      "result": "not_passed",
+      "evidence": "no authorized real-data calibration adapter is attached"
+    },
+    {
+      "check": "U7_backtest_and_privacy_review",
+      "result": "not_passed",
+      "evidence": "no real-data backtest or privacy review has been conducted"
+    },
+    {
+      "check": "U8_human_signoff",
+      "result": "not_passed",
+      "evidence": "human sign-off was explicitly deferred"
+    }
+  ],
+  "software_exit_status": "pass",
+  "empirical_exit_status": "not_passed",
+  "decision_support_status": "not_authorized"
+}

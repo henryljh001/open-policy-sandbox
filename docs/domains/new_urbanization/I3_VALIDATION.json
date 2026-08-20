@@ -1,0 +1,123 @@
+{
+  "validation_id": "new-urbanization-i3-2026-08-19",
+  "version": "0.4.0",
+  "status": "pass_with_u6_pending",
+  "usage_level": "Demo",
+  "scope": "synthetic_household_microsim_pressures_groups_and_repetition",
+  "checks": {
+    "unit_tests": {
+      "result": "pass",
+      "passed": 59,
+      "failed": 0
+    },
+    "default_household_cohort": {
+      "result": "pass",
+      "sample_households": 10000,
+      "contains_personal_information": false,
+      "fixed_seed_reproducible": true,
+      "aggregate_population_reconciled": true
+    },
+    "registered_pressures": {
+      "result": "pass",
+      "expected": 5,
+      "discovered": 5,
+      "names": [
+        "employment_downturn",
+        "extreme_disruption",
+        "fiscal_tightening",
+        "migration_surge",
+        "population_aging"
+      ]
+    },
+    "registered_engines": {
+      "result": "pass",
+      "discovered": 4,
+      "microsim_engine": "new_urbanization_microsim"
+    },
+    "micro_capacity_invariants": {
+      "result": "pass",
+      "covered": [
+        "jobs",
+        "housing",
+        "education",
+        "health",
+        "aggregate_population_weight"
+      ]
+    },
+    "direction_tests": {
+      "result": "pass",
+      "covered": [
+        "integrated_citizenization",
+        "employment_downturn",
+        "fiscal_tightening",
+        "migration_surge",
+        "population_aging"
+      ]
+    },
+    "repeated_experiment": {
+      "result": "pass",
+      "repetitions": 100,
+      "summary_statistics": ["mean", "std", "p05", "p50", "p95"],
+      "explicit_failure_rate": true,
+      "fixed_input_reproducible": true
+    },
+    "group_outcomes": {
+      "result": "pass",
+      "dimensions": ["skill", "origin", "family", "zone"]
+    },
+    "calibration_interface": {
+      "result": "pass",
+      "modes": ["absolute", "relative"],
+      "empirical_u6": "not_passed"
+    },
+    "json_schemas": {
+      "result": "pass",
+      "schema_files": 9,
+      "synthetic_examples": 5
+    },
+    "repository_isolation": {
+      "result": "pass",
+      "violations": 0
+    },
+    "line_length_100": {
+      "result": "pass",
+      "violations": 0
+    },
+    "wheel_build": {
+      "result": "pass",
+      "package": "open_policy_sandbox-0.4.0-py3-none-any.whl",
+      "package_resources_included": true,
+      "external_working_directory_run": true
+    },
+    "ruff": {
+      "result": "skipped",
+      "reason": "tool_not_installed_in_validation_runtime"
+    },
+    "mypy": {
+      "result": "skipped",
+      "reason": "tool_not_installed_in_validation_runtime"
+    },
+    "human_release_gate_u8": {
+      "result": "skipped",
+      "reason": "user_explicitly_deferred_manual_signoff"
+    }
+  },
+  "validated_claims": [
+    "a ten-thousand-record synthetic household cohort is reproducible and contains no PII fields",
+    "aggregate accounting remains authoritative and household allocations respect capacity",
+    "five pressure plugins are uniquely registered, config driven, and automatically discovered",
+    "fixed seeds reproduce single runs and one-hundred-repeat experiment summaries",
+    "overall and grouped outcomes expose modeled distributional differences",
+    "calibration targets can be evaluated with explicit absolute or relative tolerances"
+  ],
+  "not_validated": [
+    "empirical household distributions",
+    "empirical behavior probabilities",
+    "causal policy effect sizes",
+    "real stress-event probabilities",
+    "real county aggregate-moment calibration",
+    "historical or holdout performance",
+    "decision-support fitness",
+    "human release approval"
+  ]
+}

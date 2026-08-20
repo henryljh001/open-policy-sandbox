@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/policy-sandbox/schemas/simulation_run.schema.json",
+  "title": "SimulationRun",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "scenario_id",
+    "scenario_version",
+    "input_digest",
+    "engine",
+    "random_seed",
+    "status",
+    "outcomes",
+    "warnings",
+    "reproducible",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "run_id": {"type": "string", "minLength": 1},
+    "scenario_id": {"type": "string", "minLength": 1},
+    "scenario_version": {"type": "string", "minLength": 1},
+    "input_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "config_digest": {"type": ["string", "null"], "pattern": "^[a-fA-F0-9]{64}$"}
+      }
+    },
+    "random_seed": {"type": "integer", "minimum": 0},
+    "started_at": {"type": ["string", "null"], "format": "date-time"},
+    "finished_at": {"type": ["string", "null"], "format": "date-time"},
+    "status": {"type": "string", "enum": ["queued", "running", "succeeded", "failed"]},
+    "outcomes": {
+      "type": "object",
+      "additionalProperties": {"type": "number"}
+    },
+    "group_outcomes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {"type": "number"}
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {"type": "number"}
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "severity", "message"],
+        "properties": {
+          "code": {"type": "string", "minLength": 1},
+          "severity": {"type": "string", "enum": ["info", "warning", "critical"]},
+          "message": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "reproducible": {"type": "boolean"},
+    "synthetic": {"type": "boolean"}
+  }
+}

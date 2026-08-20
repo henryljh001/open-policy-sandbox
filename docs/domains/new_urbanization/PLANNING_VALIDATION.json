@@ -1,0 +1,67 @@
+{
+    "generated_at":  "2026-08-19",
+    "version":  "0.1.0-planning",
+    "status":  "pass",
+    "domain":  "new_urbanization",
+    "use_level":  "Demo-planning",
+    "checks":  [
+                   {
+                       "id":  "NU0",
+                       "name":  "official_policy_baseline",
+                       "result":  "pass",
+                       "evidence":  "5 official policy/state anchors recorded"
+                   },
+                   {
+                       "id":  "NU1",
+                       "name":  "system_plan_coverage",
+                       "result":  "pass",
+                       "evidence":  {
+                                        "policy_modules":  4,
+                                        "domain_docs":  11,
+                                        "policy_actions":  13,
+                                        "indicators":  27
+                                    }
+                   },
+                   {
+                       "id":  "NU2",
+                       "name":  "domain_registry",
+                       "result":  "pass",
+                       "evidence":  "new_urbanization auto-discovered; strict factory validation"
+                   },
+                   {
+                       "id":  "NU3",
+                       "name":  "unit_tests",
+                       "result":  "pass",
+                       "evidence":  "10/10"
+                   },
+                   {
+                       "id":  "NU4",
+                       "name":  "schemas",
+                       "result":  "pass",
+                       "evidence":  "5 schemas valid; domain config instance valid"
+                   },
+                   {
+                       "id":  "NU5",
+                       "name":  "repository_isolation",
+                       "result":  "pass",
+                       "evidence":  "0 violations"
+                   },
+                   {
+                       "id":  "NU6",
+                       "name":  "change_audit",
+                       "result":  "pass",
+                       "evidence":  "20 added; 15 modified; 0 deleted"
+                   },
+                   {
+                       "id":  "NU7",
+                       "name":  "license_gate",
+                       "result":  "pending",
+                       "evidence":  "specific open-source license not selected; public release remains blocked"
+                   }
+               ],
+    "residual":  [
+                     "MVP focus ADR-0004 remains Proposed",
+                     "no empirical calibration",
+                     "no formal open-source license"
+                 ]
+}

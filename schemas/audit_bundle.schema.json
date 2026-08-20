@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/policy-sandbox/schemas/audit_bundle.schema.json",
+  "title": "SyntheticComparisonAuditBundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "audit_id",
+    "comparison_id",
+    "comparison_input_digest",
+    "comparison_output_digest",
+    "component_versions",
+    "comparison_design",
+    "scenario_traces",
+    "risk_thresholds",
+    "gates",
+    "warnings",
+    "usage_level",
+    "synthetic",
+    "audit_digest"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "audit_id": {"type": "string", "minLength": 1},
+    "comparison_id": {"type": "string", "minLength": 1},
+    "comparison_input_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "comparison_output_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "component_versions": {"type": "object"},
+    "comparison_design": {"type": "object"},
+    "scenario_traces": {"type": "array", "minItems": 2, "items": {"type": "object"}},
+    "risk_thresholds": {"type": "object"},
+    "gates": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["gate_id", "result", "evidence"],
+        "properties": {
+          "gate_id": {"type": "string", "minLength": 1},
+          "result": {"type": "string", "enum": ["pass", "not_passed"]},
+          "evidence": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "object"}},
+    "usage_level": {"const": "Demo"},
+    "synthetic": {"const": true},
+    "audit_digest": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+  }
+}

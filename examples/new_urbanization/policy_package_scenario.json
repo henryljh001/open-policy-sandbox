@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "synthetic-metropolitan-adjacent-s6",
+  "name": "S6 综合市民化",
+  "version": "1.0.0",
+  "description": "组合落户、服务和就业工具的纯合成方向测试情景。",
+  "domain_config": {
+    "schema_version": "1.0.0",
+    "domain": "new_urbanization",
+    "focus_module": "citizenization",
+    "spatial_scale": "county",
+    "time_step": "annual",
+    "horizon_years": 5,
+    "county_type": "metropolitan_adjacent",
+    "enabled_modules": [
+      "population",
+      "labor",
+      "housing",
+      "public_service",
+      "fiscal",
+      "land"
+    ],
+    "random_seed": 20260819,
+    "synthetic": true
+  },
+  "scenario_code": "S6",
+  "archetype": "metropolitan_adjacent",
+  "start_year": 2025,
+  "population_scale": 1.0,
+  "baseline_rates": {
+    "birth_rate": 0.007,
+    "death_rate": 0.0065,
+    "net_migration_rate": 0.003,
+    "urbanization_change": 0.007,
+    "hukou_conversion_rate": 0.08,
+    "working_age_share": 0.64,
+    "employment_rate": 0.72,
+    "job_growth_rate": 0.012,
+    "housing_growth_rate": 0.012,
+    "affordable_share_of_new_housing": 0.12,
+    "education_growth_rate": 0.008,
+    "health_growth_rate": 0.01,
+    "fiscal_revenue_growth_rate": 0.025,
+    "transfer_growth_rate": 0.015,
+    "operating_expenditure_growth_rate": 0.02,
+    "capital_expenditure_share": 0.18,
+    "construction_land_growth_rate": 0.006,
+    "stock_land_reuse_rate": 0.04
+  },
+  "policy_package": {
+    "package_id": "new-urbanization-s6",
+    "interventions": [
+      {
+        "intervention_id": "s6-settlement",
+        "name": "settlement_threshold",
+        "config": {
+          "intensity": 0.8,
+          "synthetic_assumption": true,
+          "rate_deltas": {
+            "hukou_conversion_rate": 0.1,
+            "net_migration_rate": 0.001,
+            "operating_expenditure_growth_rate": 0.002
+          },
+          "tracked_adjustments": {"settlement_access_gain_pp": 15.0}
+        }
+      },
+      {
+        "intervention_id": "s6-service",
+        "name": "resident_based_service_eligibility",
+        "config": {
+          "intensity": 0.8,
+          "synthetic_assumption": true,
+          "rate_deltas": {
+            "education_growth_rate": 0.003,
+            "health_growth_rate": 0.003,
+            "operating_expenditure_growth_rate": 0.004
+          },
+          "tracked_adjustments": {"service_eligibility_gain_pp": 12.0}
+        }
+      },
+      {
+        "intervention_id": "s6-employment",
+        "name": "skills_and_employment_support",
+        "config": {
+          "intensity": 0.8,
+          "synthetic_assumption": true,
+          "rate_deltas": {
+            "employment_rate": 0.04,
+            "job_growth_rate": 0.008,
+            "operating_expenditure_growth_rate": 0.003
+          },
+          "tracked_adjustments": {"skill_match_gain_pp": 8.0}
+        }
+      }
+    ],
+    "synthetic": true
+  },
+  "engine": {
+    "name": "new_urbanization_policy_rules",
+    "config": {"strict_invariants": true}
+  },
+  "assumptions": [
+    "所有政策效应均为显式合成参数，只用于方向测试和软件演示。",
+    "政策文本只用于定义工具与约束，不作为效应参数来源。",
+    "结果是条件情景，不是对真实地区的预测或政策推荐。"
+  ],
+  "random_seed": 20260819,
+  "synthetic": true
+}

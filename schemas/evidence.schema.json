@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/policy-sandbox/schemas/evidence.schema.json",
+  "title": "Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "evidence_id",
+    "source_type",
+    "source_title",
+    "locator",
+    "verification_status",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "evidence_id": {"type": "string", "minLength": 1},
+    "source_type": {
+      "type": "string",
+      "enum": ["official_document", "official_statistics", "research", "synthetic"]
+    },
+    "source_title": {"type": "string", "minLength": 1},
+    "source_url": {"type": ["string", "null"], "format": "uri"},
+    "document_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "locator": {"type": "string", "minLength": 1},
+    "excerpt": {"type": ["string", "null"]},
+    "verification_status": {
+      "type": "string",
+      "enum": ["unverified", "machine_verified", "human_verified", "rejected"]
+    },
+    "verified_by": {"type": ["string", "null"]},
+    "verified_at": {"type": ["string", "null"], "format": "date-time"},
+    "publication_allowed": {"type": "boolean", "default": false},
+    "synthetic": {"type": "boolean"}
+  }
+}

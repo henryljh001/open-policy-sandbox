@@ -1,0 +1,62 @@
+{
+  "validation_id": "new-urbanization-i1-2026-08-19",
+  "version": "0.2.0",
+  "status": "pass",
+  "scope": "synthetic_state_and_conservation_baseline",
+  "checks": {
+    "unit_tests": {
+      "result": "pass",
+      "passed": 19,
+      "failed": 0
+    },
+    "json_schemas": {
+      "result": "pass",
+      "schema_files": 6,
+      "synthetic_examples": 3
+    },
+    "repository_isolation": {
+      "result": "pass",
+      "violations": 0
+    },
+    "python_compile": {
+      "result": "pass"
+    },
+    "line_length_100": {
+      "result": "pass",
+      "violations": 0
+    },
+    "wheel_build": {
+      "result": "pass",
+      "package": "open_policy_sandbox-0.2.0-py3-none-any.whl",
+      "package_resource_included": true,
+      "external_working_directory_run": true
+    },
+    "license": {
+      "result": "pass",
+      "spdx_id": "Apache-2.0",
+      "official_source": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "ruff": {
+      "result": "skipped",
+      "reason": "tool_not_installed_in_validation_runtime"
+    },
+    "mypy": {
+      "result": "skipped",
+      "reason": "tool_not_installed_in_validation_runtime"
+    }
+  },
+  "validated_claims": [
+    "five synthetic county archetypes load from packaged resources",
+    "population, fiscal debt, and land transitions reconcile annually",
+    "fixed configuration produces identical output",
+    "accounting invariants cannot be disabled by engine configuration",
+    "the installed wheel runs without depending on repository location or current working directory"
+  ],
+  "not_validated": [
+    "real county calibration",
+    "policy intervention effects",
+    "causal interpretation",
+    "decision-support fitness"
+  ]
+}

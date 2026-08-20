@@ -1,0 +1,96 @@
+{
+  "validation_id": "new-urbanization-i2-2026-08-19",
+  "version": "0.3.0",
+  "status": "pass",
+  "usage_level": "Demo",
+  "scope": "explicit_policy_tools_and_s0_s8_compilation",
+  "checks": {
+    "unit_tests": {
+      "result": "pass",
+      "passed": 42,
+      "failed": 0
+    },
+    "registered_interventions": {
+      "result": "pass",
+      "expected": 7,
+      "discovered": 7
+    },
+    "scenario_catalog": {
+      "result": "pass",
+      "expected": 9,
+      "executed": 9,
+      "codes": ["S0", "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"]
+    },
+    "direction_tests": {
+      "result": "pass",
+      "covered": [
+        "settlement",
+        "service_eligibility_and_capacity",
+        "employment",
+        "housing",
+        "stock_land_reuse",
+        "integrated_citizenization",
+        "high_investment_warning",
+        "shrinking_adaptation"
+      ]
+    },
+    "hard_conflicts": {
+      "result": "pass",
+      "covered": [
+        "duplicate_intervention_id_or_name",
+        "unsupported_effect_field",
+        "out_of_bound_combined_rate",
+        "non_synthetic_effect",
+        "disabled_invariant_gate"
+      ]
+    },
+    "policy_scope_evidence": {
+      "result": "pass",
+      "registered_levers_with_official_scope_source": 7,
+      "effect_parameters_marked_synthetic": 7
+    },
+    "json_schemas": {
+      "result": "pass",
+      "schema_files": 7,
+      "synthetic_examples": 4
+    },
+    "repository_isolation": {
+      "result": "pass",
+      "violations": 0
+    },
+    "line_length_100": {
+      "result": "pass",
+      "violations": 0
+    },
+    "wheel_build": {
+      "result": "pass",
+      "package": "open_policy_sandbox-0.3.0-py3-none-any.whl",
+      "package_resources_included": true,
+      "external_working_directory_run": true
+    },
+    "ruff": {
+      "result": "skipped",
+      "reason": "tool_not_installed_in_validation_runtime"
+    },
+    "mypy": {
+      "result": "skipped",
+      "reason": "tool_not_installed_in_validation_runtime"
+    }
+  },
+  "validated_claims": [
+    "seven policy tools are uniquely registered and config driven",
+    "all policy effects are explicit synthetic assumptions",
+    "S0 through S8 compile and run with annual accounting invariants",
+    "fixed inputs produce identical outputs",
+    "known risky combinations produce warnings and invalid combinations fail",
+    "every registered lever has an official source for scope definition"
+  ],
+  "not_validated": [
+    "empirical effect sizes",
+    "causal interpretation",
+    "household heterogeneity",
+    "stress scenarios",
+    "real county calibration",
+    "decision-support fitness"
+  ]
+}

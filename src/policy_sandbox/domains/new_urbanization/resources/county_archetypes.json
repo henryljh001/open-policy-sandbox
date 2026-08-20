@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0.0",
+  "synthetic": true,
+  "units": {
+    "population_jobs_housing_services": "synthetic_count",
+    "fiscal": "synthetic_currency_unit",
+    "land": "synthetic_area_unit"
+  },
+  "archetypes": {
+    "metropolitan_adjacent": {
+      "title": "都市圈邻近型县城",
+      "initial_state": {
+        "total_population": 500000,
+        "urban_residents": 300000,
+        "urban_hukou_residents": 220000,
+        "working_age_population": 320000,
+        "employed_population": 235000,
+        "jobs": 250000,
+        "housing_units": 140000,
+        "occupied_housing_units": 125000,
+        "affordable_housing_units": 14000,
+        "education_capacity": 80000,
+        "health_capacity": 3000,
+        "fiscal_revenue": 1200,
+        "transfer_revenue": 350,
+        "operating_expenditure": 1050,
+        "capital_expenditure": 300,
+        "debt": 900,
+        "used_construction_land": 120,
+        "developable_land": 42,
+        "reusable_stock_land": 16,
+        "ecological_protected_land": 238
+      }
+    },
+    "specialized_function": {
+      "title": "专业功能型县城",
+      "initial_state": {
+        "total_population": 320000,
+        "urban_residents": 185000,
+        "urban_hukou_residents": 142000,
+        "working_age_population": 202000,
+        "employed_population": 146000,
+        "jobs": 157000,
+        "housing_units": 90000,
+        "occupied_housing_units": 79000,
+        "affordable_housing_units": 8500,
+        "education_capacity": 51000,
+        "health_capacity": 2100,
+        "fiscal_revenue": 880,
+        "transfer_revenue": 260,
+        "operating_expenditure": 780,
+        "capital_expenditure": 210,
+        "debt": 620,
+        "used_construction_land": 92,
+        "developable_land": 30,
+        "reusable_stock_land": 13,
+        "ecological_protected_land": 178
+      }
+    },
+    "agricultural_main_production": {
+      "title": "农产品主产区县城",
+      "initial_state": {
+        "total_population": 420000,
+        "urban_residents": 142000,
+        "urban_hukou_residents": 108000,
+        "working_age_population": 250000,
+        "employed_population": 168000,
+        "jobs": 176000,
+        "housing_units": 76000,
+        "occupied_housing_units": 68000,
+        "affordable_housing_units": 6200,
+        "education_capacity": 62000,
+        "health_capacity": 1900,
+        "fiscal_revenue": 560,
+        "transfer_revenue": 520,
+        "operating_expenditure": 830,
+        "capital_expenditure": 180,
+        "debt": 510,
+        "used_construction_land": 75,
+        "developable_land": 38,
+        "reusable_stock_land": 9,
+        "ecological_protected_land": 287
+      }
+    },
+    "key_ecological_function": {
+      "title": "重点生态功能区县城",
+      "initial_state": {
+        "total_population": 180000,
+        "urban_residents": 81000,
+        "urban_hukou_residents": 65000,
+        "working_age_population": 105000,
+        "employed_population": 70000,
+        "jobs": 76000,
+        "housing_units": 46000,
+        "occupied_housing_units": 39000,
+        "affordable_housing_units": 5000,
+        "education_capacity": 28000,
+        "health_capacity": 1250,
+        "fiscal_revenue": 320,
+        "transfer_revenue": 610,
+        "operating_expenditure": 700,
+        "capital_expenditure": 150,
+        "debt": 360,
+        "used_construction_land": 42,
+        "developable_land": 12,
+        "reusable_stock_land": 6,
+        "ecological_protected_land": 446
+      }
+    },
+    "population_losing": {
+      "title": "人口流失型县城",
+      "initial_state": {
+        "total_population": 260000,
+        "urban_residents": 120000,
+        "urban_hukou_residents": 99000,
+        "working_age_population": 150000,
+        "employed_population": 95000,
+        "jobs": 105000,
+        "housing_units": 78000,
+        "occupied_housing_units": 61000,
+        "affordable_housing_units": 7200,
+        "education_capacity": 39000,
+        "health_capacity": 1550,
+        "fiscal_revenue": 410,
+        "transfer_revenue": 430,
+        "operating_expenditure": 690,
+        "capital_expenditure": 120,
+        "debt": 480,
+        "used_construction_land": 66,
+        "developable_land": 25,
+        "reusable_stock_land": 12,
+        "ecological_protected_land": 209
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "domain": "new_urbanization",
+  "focus_module": "citizenization",
+  "spatial_scale": "county",
+  "time_step": "annual",
+  "horizon_years": 5,
+  "county_type": "metropolitan_adjacent",
+  "enabled_modules": [
+    "population",
+    "labor",
+    "housing",
+    "public_service",
+    "fiscal",
+    "land"
+  ],
+  "random_seed": 20260819,
+  "synthetic": true
+}

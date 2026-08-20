@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "g0-1-to-g0-4-20260820",
+  "recorded_date": "2026-08-20",
+  "scope": ["G0.1", "G0.2", "G0.3", "G0.4"],
+  "status": "pass",
+  "project_version": "0.6.0",
+  "capability_status": "I5A_DATA_ADAPTER_PROTOCOL_IMPLEMENTED_U6_PENDING",
+  "git_baseline": {
+    "commit": null,
+    "tree": null,
+    "tag": null,
+    "status": "pending_g0_5_and_g0_6"
+  },
+  "authority_corrections": [
+    {
+      "file": "docs/ROADMAP.md",
+      "result": "pass",
+      "evidence": "phase 0 is partial and snapshots are not Git history"
+    },
+    {
+      "file": "docs/PRODUCT_SCOPE.md",
+      "result": "pass",
+      "evidence": "management output uses disaggregated comparison, dominance, and an unweighted Pareto candidate set"
+    }
+  ],
+  "security_review": {
+    "scan_id": "1c3f1e01-d39c-457c-b453-288ee6202511",
+    "target_snapshot_digest": "codex-security-snapshot/v1:sha256:a8024c832f52aa1508e42a70e0e97c3eb64f978c77f3ba7a8b597f074419f8b3",
+    "reviewed_candidate_files": 150,
+    "coverage": "partial_with_targeted_full-inventory_search",
+    "initial_findings": {"high": 1, "medium": 2, "low": 1},
+    "current_live_credentials_observed": false,
+    "remediation_status": "verified_by_focused_tests_and_release_gate",
+    "controls": [
+      "exact candidate and staged Git manifests",
+      "fail-closed secret, private-data, reparse-point, path, binary, and license checks",
+      "aggregate comparison work budget",
+      "Markdown contextual encoding",
+      "strict finite JSON numbers"
+    ]
+  },
+  "staged_manifest": {
+    "result": "pass",
+    "file_count": 153,
+    "path_manifest_sha256": "880d3f73da47b1c23b753802193d3118a45b57701049e1fec8513db6dc278469",
+    "violations": 0,
+    "license": "apache-2.0",
+    "notice": "present"
+  },
+  "verification_gates": [
+    {
+      "gate": "focused_security_regressions",
+      "result": "pass",
+      "evidence": "23 tests passed across isolation, deterministic ingress, comparison budget, and decision products"
+    },
+    {
+      "gate": "full_unittest",
+      "result": "pass",
+      "evidence": "95 tests passed"
+    },
+    {
+      "gate": "json_and_schema",
+      "result": "pass",
+      "evidence": "all candidate JSON parsed; 10 schema/example tests passed"
+    },
+    {
+      "gate": "wheel_build_install_external_cwd",
+      "result": "pass",
+      "evidence": "open_policy_sandbox-0.6.0-py3-none-any.whl installed in an isolated venv and a two-scenario comparison succeeded outside the repository",
+      "artifact_sha256": "192e1c4fecf16d0a922cf8877bae7cde9f083baa1cb26d1b67824c4ac3d695f8",
+      "wheel_files": 59,
+      "packaged_json_resources": 5,
+      "forbidden_wheel_entries": 0
+    },
+    {
+      "gate": "ruff",
+      "result": "not_run",
+      "evidence": "optional development dependency is not installed; syntax checks and required repository gates passed"
+    }
+  ],
+  "environment": {
+    "python": "3.12.10",
+    "pip": "25.0.1",
+    "setuptools": "81.0.0"
+  },
+  "boundaries": [
+    "No real or private data was added.",
+    "U6, U7, and U8 remain unpassed.",
+    "No human sign-off was requested or recorded.",
+    "No commit, tag, remote, or CI run is claimed by this record."
+  ]
+}

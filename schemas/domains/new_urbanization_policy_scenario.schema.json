@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/policy-sandbox/schemas/domains/new_urbanization_policy_scenario.schema.json",
+  "title": "NewUrbanizationSyntheticPolicyScenario",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "scenario_id",
+    "name",
+    "version",
+    "domain_config",
+    "scenario_code",
+    "archetype",
+    "start_year",
+    "baseline_rates",
+    "policy_package",
+    "engine",
+    "random_seed",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "scenario_id": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "description": {"type": "string"},
+    "domain_config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "domain",
+        "focus_module",
+        "spatial_scale",
+        "time_step",
+        "horizon_years",
+        "county_type",
+        "enabled_modules",
+        "synthetic"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "domain": {"const": "new_urbanization"},
+        "focus_module": {"const": "citizenization"},
+        "spatial_scale": {"const": "county"},
+        "time_step": {"const": "annual"},
+        "horizon_years": {"type": "integer", "minimum": 1, "maximum": 15},
+        "county_type": {
+          "type": "string",
+          "enum": [
+            "metropolitan_adjacent",
+            "specialized_function",
+            "agricultural_main_production",
+            "key_ecological_function",
+            "population_losing"
+          ]
+        },
+        "enabled_modules": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "population",
+              "labor",
+              "housing",
+              "public_service",
+              "fiscal",
+              "land"
+            ]
+          }
+        },
+        "random_seed": {"type": "integer", "minimum": 0},
+        "synthetic": {"const": true}
+      }
+    },
+    "scenario_code": {
+      "type": "string",
+      "enum": ["S0", "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"]
+    },
+    "archetype": {
+      "type": "string",
+      "enum": [
+        "metropolitan_adjacent",
+        "specialized_function",
+        "agricultural_main_production",
+        "key_ecological_function",
+        "population_losing"
+      ]
+    },
+    "start_year": {"type": "integer", "minimum": 2000, "maximum": 2100},
+    "population_scale": {"type": "number", "exclusiveMinimum": 0},
+    "baseline_rates": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "birth_rate": {"type": "number"},
+        "death_rate": {"type": "number"},
+        "net_migration_rate": {"type": "number"},
+        "urbanization_change": {"type": "number"},
+        "hukou_conversion_rate": {"type": "number"},
+        "working_age_share": {"type": "number"},
+        "employment_rate": {"type": "number"},
+        "job_growth_rate": {"type": "number"},
+        "housing_growth_rate": {"type": "number"},
+        "affordable_share_of_new_housing": {"type": "number"},
+        "education_growth_rate": {"type": "number"},
+        "health_growth_rate": {"type": "number"},
+        "fiscal_revenue_growth_rate": {"type": "number"},
+        "transfer_growth_rate": {"type": "number"},
+        "operating_expenditure_growth_rate": {"type": "number"},
+        "capital_expenditure_share": {"type": "number"},
+        "construction_land_growth_rate": {"type": "number"},
+        "stock_land_reuse_rate": {"type": "number"}
+      }
+    },
+    "policy_package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package_id", "interventions", "synthetic"],
+      "properties": {
+        "package_id": {"type": "string", "minLength": 1},
+        "interventions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["intervention_id", "name", "config"],
+            "properties": {
+              "intervention_id": {"type": "string", "minLength": 1},
+              "name": {
+                "type": "string",
+                "enum": [
+                  "settlement_threshold",
+                  "resident_based_service_eligibility",
+                  "skills_and_employment_support",
+                  "affordable_housing",
+                  "county_service_expansion",
+                  "citizenization_transfer",
+                  "land_capacity_bundle"
+                ]
+              },
+              "config": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "intensity",
+                  "synthetic_assumption",
+                  "rate_deltas",
+                  "tracked_adjustments"
+                ],
+                "properties": {
+                  "intensity": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+                  "synthetic_assumption": {"const": true},
+                  "rate_deltas": {
+                    "type": "object",
+                    "additionalProperties": {"type": "number"}
+                  },
+                  "tracked_adjustments": {
+                    "type": "object",
+                    "additionalProperties": {"type": "number"}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "synthetic": {"const": true}
+      }
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "config"],
+      "properties": {
+        "name": {"const": "new_urbanization_policy_rules"},
+        "config": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {"strict_invariants": {"const": true}}
+        }
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "random_seed": {"type": "integer", "minimum": 0},
+    "synthetic": {"const": true}
+  }
+}
+

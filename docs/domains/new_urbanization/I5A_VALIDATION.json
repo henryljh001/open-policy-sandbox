@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "I5a",
+  "application_version": "0.6.0",
+  "validation_date": "2026-08-19",
+  "status": "adapter_protocol_and_synthetic_calibration_passed",
+  "usage_level": "Demo",
+  "synthetic": true,
+  "checks": [
+    {
+      "check": "unit_tests",
+      "result": "pass",
+      "evidence": "87 tests passed"
+    },
+    {
+      "check": "repository_isolation",
+      "result": "pass",
+      "evidence": "0 violations"
+    },
+    {
+      "check": "python_line_length_100",
+      "result": "pass",
+      "evidence": "0 violations"
+    },
+    {
+      "check": "json_parse",
+      "result": "pass",
+      "evidence": "33 repository JSON files parse after this record is included"
+    },
+    {
+      "check": "schemas",
+      "result": "pass",
+      "evidence": "15 schemas; aggregate fixture and generated calibration run validate"
+    },
+    {
+      "check": "synthetic_examples",
+      "result": "pass",
+      "evidence": "7 examples declare synthetic=true"
+    },
+    {
+      "check": "aggregate_adapter_registry",
+      "result": "pass",
+      "evidence": "1 adapter auto-discovered; duplicate and unknown registrations fail"
+    },
+    {
+      "check": "strict_dataset_contract",
+      "result": "pass",
+      "evidence": "non-synthetic input, unit mismatch, duplicate indicator and wrong year fail"
+    },
+    {
+      "check": "target_provenance",
+      "result": "pass",
+      "evidence": "8 targets retain record_id, indicator, unit, year and status"
+    },
+    {
+      "check": "synthetic_calibration_success_path",
+      "result": "pass",
+      "evidence": "8 of 8 synthetic aggregate moments pass explicit fixture tolerances"
+    },
+    {
+      "check": "synthetic_calibration_failure_path",
+      "result": "pass",
+      "evidence": "shifted population target yields synthetic_fixture_failed"
+    },
+    {
+      "check": "U6_non_promotion_guard",
+      "result": "pass",
+      "evidence": "success and failure outputs both retain U6_status=not_passed"
+    },
+    {
+      "check": "wheel_build",
+      "result": "pass",
+      "evidence": "open_policy_sandbox-0.6.0-py3-none-any.whl built; sha256 3cbb33f2f683e4f281f804d0b164e97753b59439ad2831495e00e2ee93fe3db9"
+    },
+    {
+      "check": "external_working_directory",
+      "result": "pass",
+      "evidence": "installed wheel auto-discovered the adapter and completed synthetic calibration"
+    },
+    {
+      "check": "ruff",
+      "result": "skipped",
+      "evidence": "ruff is not installed in the local validation environment"
+    },
+    {
+      "check": "mypy",
+      "result": "skipped",
+      "evidence": "mypy is not installed in the local validation environment"
+    },
+    {
+      "check": "U6_external_calibration",
+      "result": "not_passed",
+      "evidence": "no authorized real-data adapter or empirical targets are attached"
+    },
+    {
+      "check": "U7_backtest_and_privacy_review",
+      "result": "not_passed",
+      "evidence": "no real-data backtest or privacy review has been conducted"
+    },
+    {
+      "check": "U8_human_signoff",
+      "result": "not_passed",
+      "evidence": "human sign-off remains deferred"
+    }
+  ],
+  "software_exit_status": "pass",
+  "empirical_exit_status": "not_passed",
+  "decision_support_status": "not_authorized"
+}

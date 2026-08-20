@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0.0",
+  "synthetic": true,
+  "assumptions": [
+    "所有政策效应均为显式合成参数，只用于方向测试和软件演示。",
+    "政策文本只用于定义工具与约束，不作为效应参数来源。",
+    "结果是条件情景，不是对真实地区的预测或政策推荐。"
+  ],
+  "baseline_rates": {
+    "birth_rate": 0.007,
+    "death_rate": 0.0065,
+    "net_migration_rate": 0.003,
+    "urbanization_change": 0.007,
+    "hukou_conversion_rate": 0.08,
+    "working_age_share": 0.64,
+    "employment_rate": 0.72,
+    "job_growth_rate": 0.012,
+    "housing_growth_rate": 0.012,
+    "affordable_share_of_new_housing": 0.12,
+    "education_growth_rate": 0.008,
+    "health_growth_rate": 0.01,
+    "fiscal_revenue_growth_rate": 0.025,
+    "transfer_growth_rate": 0.015,
+    "operating_expenditure_growth_rate": 0.02,
+    "capital_expenditure_share": 0.18,
+    "construction_land_growth_rate": 0.006,
+    "stock_land_reuse_rate": 0.04
+  },
+  "scenarios": {
+    "S0": {
+      "title": "S0 趋势基线",
+      "description": "不叠加政策工具，用作同一合成县域的比较基线。",
+      "interventions": []
+    },
+    "S1": {
+      "title": "S1 落户放宽",
+      "description": "降低落户门槛，但不自动补齐就业、住房和服务容量。",
+      "interventions": [
+        {
+          "intervention_id": "s1-settlement",
+          "name": "settlement_threshold",
+          "config": {
+            "intensity": 1.0,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "hukou_conversion_rate": 0.1,
+              "net_migration_rate": 0.001,
+              "operating_expenditure_growth_rate": 0.002
+            },
+            "tracked_adjustments": {
+              "settlement_access_gain_pp": 15.0
+            }
+          }
+        }
+      ]
+    },
+    "S2": {
+      "title": "S2 服务随人",
+      "description": "扩大常住人口服务资格，并以小幅效率提升表达配套运行投入。",
+      "interventions": [
+        {
+          "intervention_id": "s2-service-eligibility",
+          "name": "resident_based_service_eligibility",
+          "config": {
+            "intensity": 1.0,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "education_growth_rate": 0.003,
+              "health_growth_rate": 0.003,
+              "operating_expenditure_growth_rate": 0.004
+            },
+            "tracked_adjustments": {
+              "service_eligibility_gain_pp": 12.0
+            }
+          }
+        }
+      ]
+    },
+    "S3": {
+      "title": "S3 就业优先",
+      "description": "叠加技能培训、岗位匹配和就业服务的合成改善。",
+      "interventions": [
+        {
+          "intervention_id": "s3-employment",
+          "name": "skills_and_employment_support",
+          "config": {
+            "intensity": 1.0,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "employment_rate": 0.04,
+              "job_growth_rate": 0.008,
+              "operating_expenditure_growth_rate": 0.003
+            },
+            "tracked_adjustments": {
+              "skill_match_gain_pp": 8.0
+            }
+          }
+        }
+      ]
+    },
+    "S4": {
+      "title": "S4 县城扩容",
+      "description": "同步增加住房、教育医疗和有限建设用地容量。",
+      "interventions": [
+        {
+          "intervention_id": "s4-housing",
+          "name": "affordable_housing",
+          "config": {
+            "intensity": 0.8,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "housing_growth_rate": 0.012,
+              "affordable_share_of_new_housing": 0.25,
+              "capital_expenditure_share": 0.03
+            },
+            "tracked_adjustments": {
+              "housing_burden_reduction_pp": 5.0
+            }
+          }
+        },
+        {
+          "intervention_id": "s4-service-capacity",
+          "name": "county_service_expansion",
+          "config": {
+            "intensity": 0.8,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "education_growth_rate": 0.015,
+              "health_growth_rate": 0.018,
+              "capital_expenditure_share": 0.05,
+              "construction_land_growth_rate": 0.002
+            },
+            "tracked_adjustments": {
+              "service_efficiency_gain_pp": 2.0
+            }
+          }
+        },
+        {
+          "intervention_id": "s4-land",
+          "name": "land_capacity_bundle",
+          "config": {
+            "intensity": 0.8,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "construction_land_growth_rate": 0.004,
+              "stock_land_reuse_rate": 0.03
+            },
+            "tracked_adjustments": {
+              "stock_efficiency_gain_pp": 2.0
+            }
+          }
+        }
+      ]
+    },
+    "S5": {
+      "title": "S5 存量提质",
+      "description": "控制新增空间，优先盘活存量并提高住房和设施效率。",
+      "interventions": [
+        {
+          "intervention_id": "s5-housing-renewal",
+          "name": "affordable_housing",
+          "config": {
+            "intensity": 0.6,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "housing_growth_rate": 0.002,
+              "affordable_share_of_new_housing": 0.1,
+              "capital_expenditure_share": 0.01
+            },
+            "tracked_adjustments": {
+              "housing_burden_reduction_pp": 3.0
+            }
+          }
+        },
+        {
+          "intervention_id": "s5-service-efficiency",
+          "name": "county_service_expansion",
+          "config": {
+            "intensity": 0.6,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "education_growth_rate": 0.006,
+              "health_growth_rate": 0.008,
+              "capital_expenditure_share": 0.02
+            },
+            "tracked_adjustments": {
+              "service_efficiency_gain_pp": 6.0
+            }
+          }
+        },
+        {
+          "intervention_id": "s5-stock-land",
+          "name": "land_capacity_bundle",
+          "config": {
+            "intensity": 1.0,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "construction_land_growth_rate": -0.004,
+              "stock_land_reuse_rate": 0.12
+            },
+            "tracked_adjustments": {
+              "stock_efficiency_gain_pp": 10.0
+            }
+          }
+        }
+      ]
+    },
+    "S6": {
+      "title": "S6 综合市民化",
+      "description": "组合落户、服务和就业工具，检验三者协同方向。",
+      "interventions": [
+        {
+          "intervention_id": "s6-settlement",
+          "name": "settlement_threshold",
+          "config": {
+            "intensity": 0.8,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "hukou_conversion_rate": 0.1,
+              "net_migration_rate": 0.001,
+              "operating_expenditure_growth_rate": 0.002
+            },
+            "tracked_adjustments": {
+              "settlement_access_gain_pp": 15.0
+            }
+          }
+        },
+        {
+          "intervention_id": "s6-service",
+          "name": "resident_based_service_eligibility",
+          "config": {
+            "intensity": 0.8,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "education_growth_rate": 0.003,
+              "health_growth_rate": 0.003,
+              "operating_expenditure_growth_rate": 0.004
+            },
+            "tracked_adjustments": {
+              "service_eligibility_gain_pp": 12.0
+            }
+          }
+        },
+        {
+          "intervention_id": "s6-employment",
+          "name": "skills_and_employment_support",
+          "config": {
+            "intensity": 0.8,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "employment_rate": 0.04,
+              "job_growth_rate": 0.008,
+              "operating_expenditure_growth_rate": 0.003
+            },
+            "tracked_adjustments": {
+              "skill_match_gain_pp": 8.0
+            }
+          }
+        }
+      ]
+    },
+    "S7": {
+      "title": "S7 高投入扩张",
+      "description": "高强度住房、设施和土地扩张，但不配置就业联动。",
+      "interventions": [
+        {
+          "intervention_id": "s7-housing",
+          "name": "affordable_housing",
+          "config": {
+            "intensity": 1.0,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "housing_growth_rate": 0.025,
+              "affordable_share_of_new_housing": 0.1,
+              "capital_expenditure_share": 0.08
+            },
+            "tracked_adjustments": {
+              "housing_burden_reduction_pp": 4.0
+            }
+          }
+        },
+        {
+          "intervention_id": "s7-service",
+          "name": "county_service_expansion",
+          "config": {
+            "intensity": 1.0,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "education_growth_rate": 0.03,
+              "health_growth_rate": 0.03,
+              "capital_expenditure_share": 0.12,
+              "construction_land_growth_rate": 0.006
+            },
+            "tracked_adjustments": {
+              "service_efficiency_gain_pp": 3.0
+            }
+          }
+        },
+        {
+          "intervention_id": "s7-land",
+          "name": "land_capacity_bundle",
+          "config": {
+            "intensity": 1.0,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "construction_land_growth_rate": 0.012,
+              "stock_land_reuse_rate": 0.01
+            },
+            "tracked_adjustments": {
+              "stock_efficiency_gain_pp": 1.0
+            }
+          }
+        }
+      ]
+    },
+    "S8": {
+      "title": "S8 收缩适配",
+      "description": "控制新增空间，集中服务、增加转移支持并强化存量盘活。",
+      "interventions": [
+        {
+          "intervention_id": "s8-service",
+          "name": "resident_based_service_eligibility",
+          "config": {
+            "intensity": 0.7,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "education_growth_rate": 0.002,
+              "health_growth_rate": 0.003,
+              "operating_expenditure_growth_rate": 0.002
+            },
+            "tracked_adjustments": {
+              "service_eligibility_gain_pp": 8.0
+            }
+          }
+        },
+        {
+          "intervention_id": "s8-transfer",
+          "name": "citizenization_transfer",
+          "config": {
+            "intensity": 1.0,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "transfer_growth_rate": 0.04
+            },
+            "tracked_adjustments": {
+              "local_matching_burden_change_pp": -3.0
+            }
+          }
+        },
+        {
+          "intervention_id": "s8-land",
+          "name": "land_capacity_bundle",
+          "config": {
+            "intensity": 1.0,
+            "synthetic_assumption": true,
+            "rate_deltas": {
+              "construction_land_growth_rate": -0.005,
+              "stock_land_reuse_rate": 0.15,
+              "capital_expenditure_share": -0.04
+            },
+            "tracked_adjustments": {
+              "stock_efficiency_gain_pp": 12.0
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0.0",
+  "synthetic": true,
+  "metric_catalog_version": "1.0.0",
+  "decision_metrics": [
+    "micro_stable_citizenized_households",
+    "micro_stable_citizenization_rate_pct",
+    "micro_employment_rate_pct",
+    "micro_housing_security_rate_pct",
+    "micro_service_access_rate_pct",
+    "micro_mean_housing_burden_ratio",
+    "final_urban_hukou_gap",
+    "final_debt_to_revenue",
+    "final_used_construction_land",
+    "final_developable_land_share",
+    "failure_rate"
+  ],
+  "pareto_metrics": [
+    "micro_stable_citizenization_rate_pct",
+    "micro_employment_rate_pct",
+    "micro_housing_security_rate_pct",
+    "micro_service_access_rate_pct",
+    "final_debt_to_revenue",
+    "final_used_construction_land",
+    "failure_rate"
+  ],
+  "group_metric": "stable_citizenization_rate_pct",
+  "metrics": {
+    "micro_stable_citizenized_households": {
+      "title": "稳定市民化户数",
+      "unit": "synthetic_household",
+      "direction": "higher",
+      "category": "citizenization"
+    },
+    "micro_stable_citizenization_rate_pct": {
+      "title": "稳定市民化率",
+      "unit": "percent",
+      "direction": "higher",
+      "category": "citizenization"
+    },
+    "micro_employment_rate_pct": {
+      "title": "就业率",
+      "unit": "percent",
+      "direction": "higher",
+      "category": "employment"
+    },
+    "micro_housing_security_rate_pct": {
+      "title": "安居率",
+      "unit": "percent",
+      "direction": "higher",
+      "category": "housing"
+    },
+    "micro_service_access_rate_pct": {
+      "title": "公共服务可及率",
+      "unit": "percent",
+      "direction": "higher",
+      "category": "public_service"
+    },
+    "micro_mean_housing_burden_ratio": {
+      "title": "平均住房负担率",
+      "unit": "ratio",
+      "direction": "lower",
+      "category": "housing"
+    },
+    "final_urban_hukou_gap": {
+      "title": "常住与户籍城镇人口差距",
+      "unit": "synthetic_person",
+      "direction": "lower",
+      "category": "citizenization"
+    },
+    "final_debt": {
+      "title": "期末债务",
+      "unit": "synthetic_currency_unit",
+      "direction": "lower",
+      "category": "fiscal"
+    },
+    "final_debt_to_revenue": {
+      "title": "债务收入比",
+      "unit": "percent",
+      "direction": "lower",
+      "category": "fiscal"
+    },
+    "final_fiscal_expenditure_ratio": {
+      "title": "财政支出收入比",
+      "unit": "percent",
+      "direction": "lower",
+      "category": "fiscal"
+    },
+    "final_transfer_revenue": {
+      "title": "转移收入",
+      "unit": "synthetic_currency_unit",
+      "direction": "higher",
+      "category": "fiscal"
+    },
+    "final_used_construction_land": {
+      "title": "已用建设用地",
+      "unit": "synthetic_area_unit",
+      "direction": "lower",
+      "category": "land"
+    },
+    "final_developable_land_share": {
+      "title": "剩余可开发土地占比",
+      "unit": "percent",
+      "direction": "higher",
+      "category": "land"
+    },
+    "final_reusable_stock_land": {
+      "title": "剩余可盘活存量用地",
+      "unit": "synthetic_area_unit",
+      "direction": "lower",
+      "category": "land"
+    },
+    "failure_rate": {
+      "title": "模拟失效率",
+      "unit": "ratio",
+      "direction": "lower",
+      "category": "risk"
+    }
+  },
+  "risk_thresholds": {
+    "max_failure_rate": 0.05,
+    "max_debt_to_revenue_pct": 100.0,
+    "max_fiscal_expenditure_ratio_pct": 100.0,
+    "min_developable_land_share_pct": 5.0,
+    "min_service_access_rate_pct": 60.0,
+    "max_housing_burden_ratio": 0.35
+  }
+}

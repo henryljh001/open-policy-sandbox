@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "synthetic-metropolitan-adjacent-s0-microsim",
+  "name": "S0 合成家庭微观模拟与迁入压力",
+  "version": "1.1.0",
+  "description": "用一千户合成家庭演示迁入压力、容量约束与分组结果。",
+  "domain_config": {
+    "schema_version": "1.0.0",
+    "domain": "new_urbanization",
+    "focus_module": "citizenization",
+    "spatial_scale": "county",
+    "time_step": "annual",
+    "horizon_years": 5,
+    "county_type": "metropolitan_adjacent",
+    "enabled_modules": [
+      "population",
+      "labor",
+      "housing",
+      "public_service",
+      "fiscal",
+      "land"
+    ],
+    "random_seed": 20260819,
+    "synthetic": true
+  },
+  "scenario_code": "S0",
+  "archetype": "metropolitan_adjacent",
+  "start_year": 2025,
+  "population_scale": 1.0,
+  "baseline_rates": {},
+  "policy_package": {
+    "package_id": "new-urbanization-s0",
+    "interventions": [],
+    "synthetic": true
+  },
+  "pressure_package": {
+    "package_id": "new-urbanization-pressure-package",
+    "pressures": [
+      {
+        "pressure_id": "pressure-1-migration_surge",
+        "name": "migration_surge",
+        "config": {
+          "intensity": 1.0,
+          "synthetic_assumption": true,
+          "rate_deltas": {"net_migration_rate": 0.025},
+          "behavior_deltas": {
+            "migration_in_probability": 0.12,
+            "housing_security_probability": -0.10,
+            "service_access_probability": -0.10
+          }
+        }
+      }
+    ],
+    "synthetic": true
+  },
+  "microsim_config": {
+    "sample_size": 1000,
+    "behavior": {
+      "migration_in_probability": 0.060,
+      "migration_out_probability": 0.025,
+      "employment_probability": 0.000,
+      "low_skill_employment_probability": 0.56,
+      "medium_skill_employment_probability": 0.72,
+      "high_skill_employment_probability": 0.83,
+      "employment_retention_bonus": 0.10,
+      "settlement_probability": 0.12,
+      "settlement_employment_bonus": 0.16,
+      "settlement_family_bonus": 0.05,
+      "service_eligibility_probability": 0.52,
+      "housing_security_probability": 0.72,
+      "housing_retention_bonus": 0.12,
+      "service_access_probability": 0.82,
+      "service_retention_bonus": 0.08,
+      "aging_transition_probability": 0.012,
+      "run_failure_probability": 0.000,
+      "health_population_per_bed_capacity": 200.0,
+      "secure_housing_burden_change": -0.01,
+      "insecure_housing_burden_change": 0.02,
+      "employed_income_growth": 0.02,
+      "unemployed_income_growth": -0.01
+    },
+    "synthetic": true
+  },
+  "engine": {
+    "name": "new_urbanization_microsim",
+    "config": {"strict_invariants": true}
+  },
+  "assumptions": [
+    "全部家庭、行为概率与压力效应均为显式合成设定。",
+    "输出只用于软件验证与机制讨论，不代表真实地区或个人。"
+  ],
+  "random_seed": 20260819,
+  "synthetic": true
+}

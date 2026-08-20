@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "synthetic": true,
+  "cohort": {
+    "sample_size": 10000,
+    "composition": {
+      "single_worker": {"probability": 0.18, "working_age_adults": 1, "children": 0, "elderly": 0},
+      "working_couple": {"probability": 0.22, "working_age_adults": 2, "children": 0, "elderly": 0},
+      "family_one_child": {"probability": 0.28, "working_age_adults": 2, "children": 1, "elderly": 0},
+      "family_two_children": {"probability": 0.12, "working_age_adults": 2, "children": 2, "elderly": 0},
+      "multigenerational": {"probability": 0.12, "working_age_adults": 2, "children": 1, "elderly": 1},
+      "elderly_household": {"probability": 0.08, "working_age_adults": 0, "children": 0, "elderly": 2}
+    },
+    "tenure_probabilities": {
+      "owner": 0.48,
+      "renter": 0.30,
+      "affordable": 0.08,
+      "family": 0.14
+    },
+    "income_by_skill": {"low": 24000, "medium": 42000, "high": 72000},
+    "income_noise_share": 0.12,
+    "housing_burden_by_tenure": {
+      "owner": 0.22,
+      "renter": 0.36,
+      "affordable": 0.20,
+      "family": 0.12
+    }
+  },
+  "profiles": {
+    "metropolitan_adjacent": {
+      "skill_probabilities": {"low": 0.30, "medium": 0.46, "high": 0.24},
+      "origin_probabilities": {"local_urban": 0.36, "local_rural": 0.28, "migrant": 0.36},
+      "zone_probabilities": {"county_seat": 0.58, "key_town": 0.17, "rural": 0.10, "neighboring_city": 0.15}
+    },
+    "specialized_function": {
+      "skill_probabilities": {"low": 0.34, "medium": 0.48, "high": 0.18},
+      "origin_probabilities": {"local_urban": 0.42, "local_rural": 0.32, "migrant": 0.26},
+      "zone_probabilities": {"county_seat": 0.56, "key_town": 0.20, "rural": 0.16, "neighboring_city": 0.08}
+    },
+    "agricultural_main_production": {
+      "skill_probabilities": {"low": 0.49, "medium": 0.40, "high": 0.11},
+      "origin_probabilities": {"local_urban": 0.28, "local_rural": 0.52, "migrant": 0.20},
+      "zone_probabilities": {"county_seat": 0.36, "key_town": 0.24, "rural": 0.34, "neighboring_city": 0.06}
+    },
+    "key_ecological_function": {
+      "skill_probabilities": {"low": 0.46, "medium": 0.42, "high": 0.12},
+      "origin_probabilities": {"local_urban": 0.38, "local_rural": 0.43, "migrant": 0.19},
+      "zone_probabilities": {"county_seat": 0.47, "key_town": 0.20, "rural": 0.29, "neighboring_city": 0.04}
+    },
+    "population_losing": {
+      "skill_probabilities": {"low": 0.45, "medium": 0.44, "high": 0.11},
+      "origin_probabilities": {"local_urban": 0.43, "local_rural": 0.42, "migrant": 0.15},
+      "zone_probabilities": {"county_seat": 0.43, "key_town": 0.19, "rural": 0.27, "neighboring_city": 0.11}
+    }
+  },
+  "behavior": {
+    "migration_in_probability": 0.060,
+    "migration_out_probability": 0.025,
+    "employment_probability": 0.000,
+    "low_skill_employment_probability": 0.56,
+    "medium_skill_employment_probability": 0.72,
+    "high_skill_employment_probability": 0.83,
+    "employment_retention_bonus": 0.10,
+    "settlement_probability": 0.12,
+    "settlement_employment_bonus": 0.16,
+    "settlement_family_bonus": 0.05,
+    "service_eligibility_probability": 0.52,
+    "housing_security_probability": 0.72,
+    "housing_retention_bonus": 0.12,
+    "service_access_probability": 0.82,
+    "service_retention_bonus": 0.08,
+    "aging_transition_probability": 0.012,
+    "run_failure_probability": 0.000,
+    "health_population_per_bed_capacity": 200.0,
+    "secure_housing_burden_change": -0.01,
+    "insecure_housing_burden_change": 0.02,
+    "employed_income_growth": 0.02,
+    "unemployed_income_growth": -0.01
+  }
+}
