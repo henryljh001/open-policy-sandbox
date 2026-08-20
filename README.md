@@ -1,5 +1,8 @@
 # Policy Sandbox｜开源政策沙盒
 
+[![CI](https://github.com/henryljh001/open-policy-sandbox/actions/workflows/ci.yml/badge.svg)](https://github.com/henryljh001/open-policy-sandbox/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
 Policy Sandbox 是面向政策研究者、治理部门分析人员和高层管理者的开源政策实验框架。它把政策工具、行为假设和外部压力转成可审计配置，通过可复现的条件情景比较政策组合的总体影响、群体差异、资源代价和失效风险。
 
 当前版本为 `0.6.0`，使用等级为 **Demo**。首个领域插件是“新型城镇化”，MVP 聚焦“农业转移人口市民化 × 县城综合承载能力”。仓库不包含真实政策语料、研究台账、个人数据或人工待签材料。
@@ -78,4 +81,4 @@ python scripts/run_calibration.py `
 - 不得把结果用于真实县域预测、排序、审批或正式资源配置；
 - U6 真实数据校准、U7 回溯/隐私审查和 U8 人工发布门尚未通过。
 
-项目采用 Apache License 2.0。详见 `CURRENT_STATE.md`、`docs/PATHS_AND_BOUNDARIES.md`、`docs/domains/new_urbanization/MODEL_CARD.md` 和 `DATA_ADAPTER_PROTOCOL.md`。
+项目采用 Apache License 2.0。详见 `CURRENT_STATE.md`、`docs/VERSIONING_AND_RELEASES.md`、`docs/PATHS_AND_BOUNDARIES.md`、`docs/domains/new_urbanization/MODEL_CARD.md` 和 `DATA_ADAPTER_PROTOCOL.md`。
