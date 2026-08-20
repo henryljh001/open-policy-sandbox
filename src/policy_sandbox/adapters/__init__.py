@@ -8,6 +8,12 @@ from policy_sandbox.adapters.contracts import (
     canonical_digest,
     migrate_aggregate_dataset_v1_to_v2,
 )
+from policy_sandbox.adapters.quality import (
+    AggregateDataQualityError,
+    build_adapter_conformance_report,
+    build_aggregate_data_quality_report,
+    validate_aggregate_dataset_v2_semantics,
+)
 from policy_sandbox.adapters.registry import (
     AGGREGATE_ADAPTER_REGISTRY,
     AggregateDataAdapterFactory,
@@ -22,8 +28,12 @@ __all__ = [
     "AggregateDataAdapter",
     "AggregateDataAdapterDescriptor",
     "AggregateDataAdapterFactory",
+    "AggregateDataQualityError",
     "available_aggregate_adapters",
+    "build_adapter_conformance_report",
+    "build_aggregate_data_quality_report",
     "canonical_digest",
     "migrate_aggregate_dataset_v1_to_v2",
     "register_aggregate_adapter",
+    "validate_aggregate_dataset_v2_semantics",
 ]
