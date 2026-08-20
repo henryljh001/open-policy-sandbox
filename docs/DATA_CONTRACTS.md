@@ -11,6 +11,7 @@
 | ExperimentRun | `schemas/experiment_run.schema.json` | 表达重复次数、分位数、标准差和失败率 |
 | DomainConfig | `schemas/domains/*.domain.schema.json` | 表达领域模块、尺度和时间步长 |
 | MicrosimScenario | `schemas/domains/*_microsim_scenario.schema.json` | 表达合成家庭、行为和压力配置 |
+| ValidationPreregistration | `schemas/validation_preregistration.schema.json` | 分阶段冻结 U6 校准与 U7 一次性留出规则 |
 
 ## 2. 契约原则
 
@@ -55,7 +56,18 @@
 
 每个目标矩必须声明 `target`、`tolerance` 和 `mode=absolute|relative`。目标来源由适配层负责；I3 只接受 `synthetic_targets=true`，因此接口通过不等于 U6 经验校准通过。
 
-## 7. 版本兼容
+## 7. 验证预注册
+
+U6 与 U7 使用同一 Schema、不同 `registration_stage`：
+
+- U6 在查看校准结果前冻结数据分割、指标矩、容差、参数边界和实现摘要；
+- U7 在 U6 完成后、查看留出结果前引用 U6 登记与证据，冻结最终模型和一次性留出阈值；
+- 单份登记依次通过 Schema、语义和内容摘要校验；
+- U6/U7 组合还必须通过跨阶段链校验，禁止样本、范围或实现漂移；
+- 预注册不嵌入结果，也不自动改变能力状态。
+
+完整流程见 `docs/domains/new_urbanization/U6_U7_PREREGISTRATION.md`。
+
 
 - 破坏性字段变化提升 schema 主版本；
 - 新增可选字段提升次版本；

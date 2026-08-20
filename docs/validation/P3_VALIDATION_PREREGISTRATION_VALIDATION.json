@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "validation_id": "P3_VALIDATION_PREREGISTRATION_2026-08-20",
+  "generated_on": "2026-08-20",
+  "baseline_commit": "b617ba8dfcd9bf4a32f10cec64e1c406cb0d09f8",
+  "branch": "feat/validation-preregistration",
+  "scope": [
+    "U6 calibration preregistration before calibration result access",
+    "U7 holdout preregistration after U6 and before holdout result access",
+    "strict whole-document registration digest",
+    "cross-stage registration chain validation",
+    "synthetic blank public templates only"
+  ],
+  "checks": [
+    {
+      "gate": "template_json_schema_and_semantics",
+      "status": "pass",
+      "evidence": "2 synthetic blank templates parse, match JSON Schema, and pass template semantics"
+    },
+    {
+      "gate": "targeted_preregistration_tests",
+      "status": "pass",
+      "evidence": "21 tests passed"
+    },
+    {
+      "gate": "full_unittest",
+      "status": "pass",
+      "evidence": "151 tests passed on Python 3.12"
+    },
+    {
+      "gate": "candidate_isolation_scan",
+      "status": "pass",
+      "evidence": {
+        "candidate_manifest_count": 182,
+        "candidate_manifest_sha256": "3c09cf43a7e11fb13adf6374e6c068223ecf1b943e88423f5d3aa0cc649a18a5",
+        "violations": 0
+      }
+    },
+    {
+      "gate": "pre_result_state_machine",
+      "status": "pass",
+      "evidence": [
+        "U6 sealed before calibration results are viewed",
+        "U7 sealed after U6 evidence and before holdout results are viewed",
+        "one-time holdout slot remains pristine at registration"
+      ]
+    },
+    {
+      "gate": "cross_stage_chain",
+      "status": "pass",
+      "evidence": [
+        "U7 references the exact U6 registration digest",
+        "I5b evidence, scope, data split and implementation freeze cannot drift",
+        "U6 evidence and final model artifacts cannot reuse preregistration digests"
+      ]
+    },
+    {
+      "gate": "strict_json_digest",
+      "status": "pass",
+      "evidence": "the digest covers the whole registration with its digest slot null; non-finite JSON values fail"
+    },
+    {
+      "gate": "git_diff_check",
+      "status": "pass",
+      "evidence": "no whitespace errors"
+    }
+  ],
+  "registration_contract": {
+    "registration_stages": [
+      "u6_calibration",
+      "u7_holdout"
+    ],
+    "public_blank_templates": 2,
+    "schemas": 20,
+    "real_data_readers": 0,
+    "contains_real_results": false,
+    "maximum_holdout_executions": 1,
+    "blocked_real_indicators": [
+      "used_construction_land"
+    ],
+    "automatic_capability_promotion": false
+  },
+  "capability_effect": {
+    "I5a": "unchanged_completed",
+    "I5b": "not_assessed_requires_authorization",
+    "U6": "not_passed",
+    "U7": "not_passed",
+    "U8": "not_signed",
+    "usage_level": "Demo"
+  },
+  "local_lint": {
+    "status": "not_run_optional_tool_unavailable",
+    "tool": "ruff",
+    "resolution": "required remote CI lint before merge"
+  },
+  "next": "P4 runs staged isolation, pull-request CI, release diff audit and v0.7.0 preparation without real data"
+}

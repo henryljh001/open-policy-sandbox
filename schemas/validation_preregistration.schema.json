@@ -1,0 +1,355 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/policy-sandbox/schemas/validation_preregistration.schema.json",
+  "title": "U6U7ValidationPreregistration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "registration_id",
+    "registration_version",
+    "registration_status",
+    "registration_stage",
+    "registered_at",
+    "registration_digest",
+    "domain",
+    "purpose",
+    "contains_results",
+    "prerequisites",
+    "scope",
+    "data_freeze",
+    "model_freeze",
+    "u6_plan",
+    "u7_plan",
+    "amendment_policy",
+    "result_access",
+    "capability_effect",
+    "synthetic"
+  ],
+  "$defs": {
+    "digestOrNull": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "indicatorId": {
+      "enum": [
+        "total_population",
+        "urbanization_rate",
+        "employment_rate",
+        "debt_to_revenue",
+        "education_capacity_per_1000",
+        "health_capacity_per_1000",
+        "housing_occupancy_rate",
+        "used_construction_land"
+      ]
+    },
+    "calibrationWindow": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["start_year", "end_year"],
+      "properties": {
+        "start_year": {"type": "integer", "minimum": 1900, "maximum": 2200},
+        "end_year": {"type": "integer", "minimum": 1900, "maximum": 2200}
+      }
+    },
+    "moment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["indicator_id", "model_outcome", "unit", "mode", "tolerance"],
+      "properties": {
+        "indicator_id": {"$ref": "#/$defs/indicatorId"},
+        "model_outcome": {"type": "string", "minLength": 1},
+        "unit": {"type": "string", "minLength": 1},
+        "mode": {"enum": ["absolute", "relative"]},
+        "tolerance": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "parameterBound": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["parameter_id", "minimum", "maximum"],
+      "properties": {
+        "parameter_id": {"type": "string", "minLength": 1},
+        "minimum": {"type": "number"},
+        "maximum": {"type": "number"}
+      }
+    },
+    "sensitivityCheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["check_id", "method", "parameters", "decision_rule"],
+      "properties": {
+        "check_id": {"type": "string", "minLength": 1},
+        "method": {"enum": ["one_at_a_time", "scenario_grid", "bootstrap"]},
+        "parameters": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "decision_rule": {"type": "string", "minLength": 1}
+      }
+    },
+    "holdoutMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric_id", "direction", "threshold", "aggregation"],
+      "properties": {
+        "metric_id": {"type": "string", "minLength": 1},
+        "direction": {"enum": ["maximum", "minimum"]},
+        "threshold": {"type": "number"},
+        "aggregation": {"enum": ["overall", "by_archetype", "by_period"]}
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "registration_id": {"type": "string", "minLength": 1},
+    "registration_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "registration_status": {"enum": ["template_only", "sealed_pre_results"]},
+    "registration_stage": {"enum": ["u6_calibration", "u7_holdout"]},
+    "registered_at": {"type": ["string", "null"], "format": "date-time"},
+    "registration_digest": {"$ref": "#/$defs/digestOrNull"},
+    "domain": {"const": "new_urbanization"},
+    "purpose": {"const": "pre_results_registration_only"},
+    "contains_results": {"const": false},
+    "prerequisites": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "I5b_evidence_digest",
+        "U6_registration_digest",
+        "U6_evidence_digest"
+      ],
+      "properties": {
+        "I5b_evidence_digest": {"$ref": "#/$defs/digestOrNull"},
+        "U6_registration_digest": {"$ref": "#/$defs/digestOrNull"},
+        "U6_evidence_digest": {"$ref": "#/$defs/digestOrNull"}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "geographic_level",
+        "calibration_window",
+        "holdout_kind",
+        "indicator_ids"
+      ],
+      "properties": {
+        "geographic_level": {"type": ["string", "null"], "minLength": 1},
+        "calibration_window": {"$ref": "#/$defs/calibrationWindow"},
+        "holdout_kind": {
+          "enum": [null, "historical_period", "geographic_region"]
+        },
+        "indicator_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/indicatorId"}
+        }
+      }
+    },
+    "data_freeze": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calibration_dataset_digest",
+        "holdout_dataset_digest",
+        "data_partition_digest",
+        "authorization_evidence_digest",
+        "quality_report_digest"
+      ],
+      "properties": {
+        "calibration_dataset_digest": {"$ref": "#/$defs/digestOrNull"},
+        "holdout_dataset_digest": {"$ref": "#/$defs/digestOrNull"},
+        "data_partition_digest": {"$ref": "#/$defs/digestOrNull"},
+        "authorization_evidence_digest": {"$ref": "#/$defs/digestOrNull"},
+        "quality_report_digest": {"$ref": "#/$defs/digestOrNull"}
+      }
+    },
+    "model_freeze": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_commit",
+        "software_version",
+        "engine_name",
+        "engine_version",
+        "config_digest",
+        "parameter_bounds_digest",
+        "implementation_freeze_digest",
+        "calibrated_parameters_digest",
+        "validated_model_freeze_digest"
+      ],
+      "properties": {
+        "repository_commit": {
+          "type": ["string", "null"],
+          "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+        },
+        "software_version": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "engine_name": {"type": ["string", "null"], "minLength": 1},
+        "engine_version": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "config_digest": {"$ref": "#/$defs/digestOrNull"},
+        "parameter_bounds_digest": {"$ref": "#/$defs/digestOrNull"},
+        "implementation_freeze_digest": {"$ref": "#/$defs/digestOrNull"},
+        "calibrated_parameters_digest": {"$ref": "#/$defs/digestOrNull"},
+        "validated_model_freeze_digest": {"$ref": "#/$defs/digestOrNull"}
+      }
+    },
+    "u6_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "acceptance_rule",
+        "moments",
+        "parameter_bounds",
+        "sensitivity_checks",
+        "failure_policy",
+        "maximum_calibration_attempts"
+      ],
+      "properties": {
+        "acceptance_rule": {"const": "all_registered_moments_within_tolerance"},
+        "moments": {"type": "array", "items": {"$ref": "#/$defs/moment"}},
+        "parameter_bounds": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/parameterBound"}
+        },
+        "sensitivity_checks": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/sensitivityCheck"}
+        },
+        "failure_policy": {"const": "retain_all_attempts_and_report"},
+        "maximum_calibration_attempts": {"type": ["integer", "null"], "minimum": 1}
+      }
+    },
+    "u7_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "acceptance_rule",
+        "primary_metrics",
+        "externality_boundary",
+        "independent_validator_role",
+        "one_time_access"
+      ],
+      "properties": {
+        "acceptance_rule": {"const": "all_primary_metrics_meet_thresholds"},
+        "primary_metrics": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/holdoutMetric"}
+        },
+        "externality_boundary": {"type": ["string", "null"], "minLength": 1},
+        "independent_validator_role": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "one_time_access": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "maximum_executions",
+            "consumed",
+            "consumed_at",
+            "attempt_id",
+            "result_digest"
+          ],
+          "properties": {
+            "maximum_executions": {"const": 1},
+            "consumed": {"const": false},
+            "consumed_at": {"const": null},
+            "attempt_id": {"const": null},
+            "result_digest": {"const": null}
+          }
+        }
+      }
+    },
+    "amendment_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["before_result_access", "after_result_access", "change_log"],
+      "properties": {
+        "before_result_access": {"const": "new_version_and_digest_required"},
+        "after_result_access": {"const": "original_holdout_evidence_invalidated"},
+        "change_log": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["amendment_id", "reason", "prior_registration_digest"],
+            "properties": {
+              "amendment_id": {"type": "string", "minLength": 1},
+              "reason": {"type": "string", "minLength": 1},
+              "prior_registration_digest": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    "result_access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["calibration_results_viewed", "holdout_results_viewed"],
+      "properties": {
+        "calibration_results_viewed": {"type": "boolean"},
+        "holdout_results_viewed": {"type": "boolean"}
+      }
+    },
+    "capability_effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["automatic_promotion", "I5b", "U6", "U7", "U8", "usage_level"],
+      "properties": {
+        "automatic_promotion": {"const": false},
+        "I5b": {"const": "unchanged"},
+        "U6": {"const": "unchanged"},
+        "U7": {"const": "unchanged"},
+        "U8": {"const": "unchanged"},
+        "usage_level": {"const": "unchanged"}
+      }
+    },
+    "synthetic": {"type": "boolean"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"registration_status": {"const": "template_only"}},
+        "required": ["registration_status"]
+      },
+      "then": {
+        "properties": {
+          "registration_version": {"const": "0.0.0"},
+          "registered_at": {"const": null},
+          "registration_digest": {"const": null},
+          "synthetic": {"const": true}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"registration_status": {"const": "sealed_pre_results"}},
+        "required": ["registration_status"]
+      },
+      "then": {
+        "properties": {
+          "registered_at": {"type": "string", "format": "date-time"},
+          "registration_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    }
+  ]
+}

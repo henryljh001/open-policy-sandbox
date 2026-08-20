@@ -17,6 +17,7 @@ Policy Sandbox 是面向政策研究者、治理部门分析人员和高层管�
   → 总体结果、群体差距、财政土地账、Pareto 前沿
   → 一页纸摘要与机器审计包
   → 注册式汇总数据适配器与合成校准检查
+  → U6/U7 两阶段空白预注册与一次性留出协议
 ```
 
 聚合模型负责人口、财政和土地守恒；家庭层只表达技能、来源、家庭结构和空间位置差异。家庭 ID 是程序生成编号，不含姓名、地址、联系方式或真实个人映射。
@@ -37,6 +38,7 @@ Policy Sandbox 是面向政策研究者、治理部门分析人员和高层管�
 - `src/policy_sandbox/domains/`：领域状态、守恒、微观行为、编译与目录；
 - `src/policy_sandbox/plugins/`：领域、引擎、政策工具和压力注册实现；
 - `src/policy_sandbox/adapters/`：汇总数据适配器协议、注册表和实现；
+- `src/policy_sandbox/validation/`：预注册语义、内容摘要和跨阶段链校验；
 - `src/policy_sandbox/application/`：运行、实验、比较、决策产品和校准检查；
 - `schemas/`：场景、实验、比较、简报、审计、数据卡和校准契约；
 - `examples/`：全部标记 `synthetic=true` 的配置与数据；
